@@ -1,0 +1,11 @@
+best,method,seed,top_1pct
+1.0,price_rl_rho_gated,0,0.004688546550569324
+1.0,adalead_closed_loop,0,0.18754186202277295
+1.0,price_rl_rho_gated,1,0.004018754186202277
+1.0,adalead_closed_loop,1,0.18888144675150703
+1.0,price_rl_rho_gated,2,0.0026791694574681848
+1.0,adalead_closed_loop,2,0.07300736771600803
+1.0,price_rl_rho_gated,3,0.0026791694574681848
+1.0,adalead_closed_loop,3,0.1855324849296718
+1.0,price_rl_rho_gated,4,0.006028131279303416
+1.0,adalead_closed_loop,4,0.16945746818486268

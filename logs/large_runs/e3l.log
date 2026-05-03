@@ -1,0 +1,102 @@
+K= 0 seed= 0 price=0.843 ada=0.779 rd=0.669 fix=0.802 cos≥1.0000
+K= 0 seed= 1 price=0.799 ada=0.772 rd=0.658 fix=0.773 cos≥1.0000
+K= 0 seed= 2 price=0.794 ada=0.748 rd=0.608 fix=0.775 cos≥1.0000
+K= 0 seed= 3 price=0.824 ada=0.796 rd=0.640 fix=0.782 cos≥1.0000
+K= 0 seed= 4 price=0.789 ada=0.746 rd=0.590 fix=0.764 cos≥1.0000
+K= 0 seed= 5 price=0.788 ada=0.759 rd=0.628 fix=0.765 cos≥1.0000
+K= 0 seed= 6 price=0.793 ada=0.755 rd=0.621 fix=0.756 cos≥1.0000
+K= 0 seed= 7 price=0.806 ada=0.752 rd=0.612 fix=0.774 cos≥1.0000
+K= 0 seed= 8 price=0.782 ada=0.767 rd=0.616 fix=0.744 cos≥1.0000
+K= 0 seed= 9 price=0.852 ada=0.826 rd=0.679 fix=0.813 cos≥1.0000
+K= 1 seed= 0 price=0.846 ada=0.736 rd=0.640 fix=0.739 cos≥1.0000
+K= 1 seed= 1 price=0.812 ada=0.795 rd=0.648 fix=0.725 cos≥1.0000
+K= 1 seed= 2 price=0.839 ada=0.828 rd=0.633 fix=0.728 cos≥1.0000
+K= 1 seed= 3 price=0.815 ada=0.777 rd=0.662 fix=0.717 cos≥1.0000
+K= 1 seed= 4 price=0.843 ada=0.794 rd=0.651 fix=0.726 cos≥1.0000
+K= 1 seed= 5 price=0.799 ada=0.807 rd=0.631 fix=0.741 cos≥1.0000
+K= 1 seed= 6 price=0.838 ada=0.753 rd=0.652 fix=0.749 cos≥1.0000
+K= 1 seed= 7 price=0.839 ada=0.801 rd=0.643 fix=0.768 cos≥1.0000
+K= 1 seed= 8 price=0.798 ada=0.749 rd=0.651 fix=0.744 cos≥1.0000
+K= 1 seed= 9 price=0.823 ada=0.769 rd=0.636 fix=0.748 cos≥1.0000
+K= 3 seed= 0 price=0.827 ada=0.800 rd=0.670 fix=0.653 cos≥1.0000
+K= 3 seed= 1 price=0.806 ada=0.779 rd=0.647 fix=0.637 cos≥1.0000
+K= 3 seed= 2 price=0.748 ada=0.763 rd=0.655 fix=0.685 cos≥1.0000
+K= 3 seed= 3 price=0.773 ada=0.808 rd=0.626 fix=0.669 cos≥1.0000
+K= 3 seed= 4 price=0.781 ada=0.751 rd=0.645 fix=0.647 cos≥1.0000
+K= 3 seed= 5 price=0.787 ada=0.756 rd=0.691 fix=0.630 cos≥1.0000
+K= 3 seed= 6 price=0.794 ada=0.801 rd=0.636 fix=0.650 cos≥1.0000
+K= 3 seed= 7 price=0.784 ada=0.752 rd=0.664 fix=0.635 cos≥1.0000
+K= 3 seed= 8 price=0.765 ada=0.787 rd=0.644 fix=0.655 cos≥1.0000
+K= 3 seed= 9 price=0.765 ada=0.778 rd=0.650 fix=0.655 cos≥1.0000
+K= 5 seed= 0 price=0.786 ada=0.787 rd=0.635 fix=0.646 cos≥1.0000
+K= 5 seed= 1 price=0.780 ada=0.791 rd=0.638 fix=0.644 cos≥1.0000
+K= 5 seed= 2 price=0.747 ada=0.767 rd=0.649 fix=0.634 cos≥1.0000
+K= 5 seed= 3 price=0.756 ada=0.756 rd=0.675 fix=0.635 cos≥1.0000
+K= 5 seed= 4 price=0.727 ada=0.803 rd=0.643 fix=0.659 cos≥1.0000
+K= 5 seed= 5 price=0.756 ada=0.773 rd=0.645 fix=0.661 cos≥1.0000
+K= 5 seed= 6 price=0.740 ada=0.737 rd=0.703 fix=0.667 cos≥1.0000
+K= 5 seed= 7 price=0.739 ada=0.765 rd=0.632 fix=0.648 cos≥1.0000
+K= 5 seed= 8 price=0.734 ada=0.772 rd=0.650 fix=0.654 cos≥1.0000
+K= 5 seed= 9 price=0.773 ada=0.762 rd=0.639 fix=0.635 cos≥1.0000
+K= 8 seed= 0 price=0.750 ada=0.757 rd=0.645 fix=0.660 cos≥1.0000
+K= 8 seed= 1 price=0.716 ada=0.746 rd=0.635 fix=0.668 cos≥1.0000
+K= 8 seed= 2 price=0.718 ada=0.749 rd=0.628 fix=0.698 cos≥1.0000
+K= 8 seed= 3 price=0.714 ada=0.725 rd=0.659 fix=0.685 cos≥1.0000
+K= 8 seed= 4 price=0.700 ada=0.773 rd=0.661 fix=0.650 cos≥1.0000
+K= 8 seed= 5 price=0.691 ada=0.749 rd=0.648 fix=0.651 cos≥1.0000
+K= 8 seed= 6 price=0.753 ada=0.739 rd=0.651 fix=0.651 cos≥1.0000
+K= 8 seed= 7 price=0.717 ada=0.743 rd=0.648 fix=0.642 cos≥1.0000
+K= 8 seed= 8 price=0.722 ada=0.739 rd=0.677 fix=0.664 cos≥1.0000
+K= 8 seed= 9 price=0.767 ada=0.744 rd=0.635 fix=0.637 cos≥1.0000
+K=12 seed= 0 price=0.687 ada=0.746 rd=0.641 fix=0.643 cos≥1.0000
+K=12 seed= 1 price=0.697 ada=0.743 rd=0.659 fix=0.654 cos≥1.0000
+K=12 seed= 2 price=0.686 ada=0.715 rd=0.670 fix=0.672 cos≥1.0000
+K=12 seed= 3 price=0.663 ada=0.756 rd=0.648 fix=0.642 cos≥1.0000
+K=12 seed= 4 price=0.701 ada=0.722 rd=0.625 fix=0.654 cos≥1.0000
+K=12 seed= 5 price=0.698 ada=0.723 rd=0.646 fix=0.672 cos≥1.0000
+K=12 seed= 6 price=0.665 ada=0.721 rd=0.657 fix=0.659 cos≥1.0000
+K=12 seed= 7 price=0.700 ada=0.711 rd=0.647 fix=0.659 cos≥1.0000
+K=12 seed= 8 price=0.671 ada=0.725 rd=0.643 fix=0.649 cos≥1.0000
+K=12 seed= 9 price=0.711 ada=0.698 rd=0.662 fix=0.679 cos≥1.0000
+K=18 seed= 0 price=0.641 ada=0.716 rd=0.626 fix=0.637 cos≥1.0000
+K=18 seed= 1 price=0.646 ada=0.705 rd=0.634 fix=0.640 cos≥1.0000
+K=18 seed= 2 price=0.658 ada=0.680 rd=0.709 fix=0.627 cos≥1.0000
+K=18 seed= 3 price=0.648 ada=0.709 rd=0.660 fix=0.626 cos≥1.0000
+K=18 seed= 4 price=0.662 ada=0.711 rd=0.631 fix=0.638 cos≥1.0000
+K=18 seed= 5 price=0.652 ada=0.701 rd=0.640 fix=0.632 cos≥1.0000
+K=18 seed= 6 price=0.630 ada=0.718 rd=0.659 fix=0.661 cos≥1.0000
+K=18 seed= 7 price=0.676 ada=0.701 rd=0.649 fix=0.653 cos≥1.0000
+K=18 seed= 8 price=0.663 ada=0.676 rd=0.646 fix=0.653 cos≥1.0000
+K=18 seed= 9 price=0.658 ada=0.662 rd=0.625 fix=0.645 cos≥1.0000
+K=25 seed= 0 price=0.648 ada=0.653 rd=0.667 fix=0.656 cos≥1.0000
+K=25 seed= 1 price=0.667 ada=0.675 rd=0.672 fix=0.645 cos≥1.0000
+K=25 seed= 2 price=0.667 ada=0.668 rd=0.635 fix=0.634 cos≥1.0000
+K=25 seed= 3 price=0.644 ada=0.685 rd=0.641 fix=0.642 cos≥1.0000
+K=25 seed= 4 price=0.639 ada=0.668 rd=0.646 fix=0.647 cos≥1.0000
+K=25 seed= 5 price=0.691 ada=0.673 rd=0.652 fix=0.644 cos≥1.0000
+K=25 seed= 6 price=0.623 ada=0.647 rd=0.646 fix=0.665 cos≥1.0000
+K=25 seed= 7 price=0.637 ada=0.665 rd=0.635 fix=0.640 cos≥1.0000
+K=25 seed= 8 price=0.636 ada=0.662 rd=0.645 fix=0.653 cos≥1.0000
+K=25 seed= 9 price=0.643 ada=0.674 rd=0.641 fix=0.651 cos≥1.0000
+K=32 seed= 0 price=0.652 ada=0.644 rd=0.634 fix=0.643 cos≥1.0000
+K=32 seed= 1 price=0.645 ada=0.688 rd=0.627 fix=0.665 cos≥1.0000
+K=32 seed= 2 price=0.652 ada=0.656 rd=0.641 fix=0.650 cos≥1.0000
+K=32 seed= 3 price=0.635 ada=0.652 rd=0.651 fix=0.669 cos≥1.0000
+K=32 seed= 4 price=0.646 ada=0.687 rd=0.675 fix=0.646 cos≥1.0000
+K=32 seed= 5 price=0.654 ada=0.648 rd=0.648 fix=0.661 cos≥1.0000
+K=32 seed= 6 price=0.664 ada=0.636 rd=0.638 fix=0.646 cos≥1.0000
+K=32 seed= 7 price=0.657 ada=0.640 rd=0.651 fix=0.677 cos≥1.0000
+K=32 seed= 8 price=0.637 ada=0.688 rd=0.680 fix=0.664 cos≥1.0000
+K=32 seed= 9 price=0.637 ada=0.654 rd=0.658 fix=0.621 cos≥1.0000
+K=39 seed= 0 price=0.657 ada=0.662 rd=0.637 fix=0.695 cos≥1.0000
+K=39 seed= 1 price=0.650 ada=0.647 rd=0.660 fix=0.634 cos≥1.0000
+K=39 seed= 2 price=0.624 ada=0.637 rd=0.642 fix=0.646 cos≥1.0000
+K=39 seed= 3 price=0.648 ada=0.654 rd=0.647 fix=0.652 cos≥1.0000
+K=39 seed= 4 price=0.676 ada=0.635 rd=0.639 fix=0.630 cos≥1.0000
+K=39 seed= 5 price=0.637 ada=0.653 rd=0.678 fix=0.662 cos≥1.0000
+K=39 seed= 6 price=0.681 ada=0.667 rd=0.630 fix=0.641 cos≥1.0000
+K=39 seed= 7 price=0.641 ada=0.665 rd=0.640 fix=0.647 cos≥1.0000
+K=39 seed= 8 price=0.659 ada=0.646 rd=0.639 fix=0.695 cos≥1.0000
+K=39 seed= 9 price=0.669 ada=0.641 rd=0.668 fix=0.653 cos≥1.0000
+
+E3-L done in 689.7s

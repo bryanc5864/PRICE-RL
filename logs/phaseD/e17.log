@@ -1,0 +1,11 @@
+seed=0 done
+seed=1 done
+seed=2 done
+seed=3 done
+seed=4 done
+
+E17 done in 60.4s
+  random             top-1%=0.029  top-K-unique=42.4  pair-Hamming-top10=3.30
+  pex                top-1%=0.352  top-K-unique=303.4  pair-Hamming-top10=3.04
+  adalead            top-1%=2.079  top-K-unique=45.4  pair-Hamming-top10=0.88
+  price_rl           top-1%=2.234  top-K-unique=114.6  pair-Hamming-top10=0.98

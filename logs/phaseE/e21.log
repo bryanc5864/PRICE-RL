@@ -1,0 +1,32 @@
+noise=0.00 seed=0 alarm=0 final_rho=0.686 final_gap=0.261
+noise=0.00 seed=1 alarm=0 final_rho=0.516 final_gap=0.280
+noise=0.00 seed=2 alarm=0 final_rho=0.540 final_gap=0.285
+noise=0.00 seed=3 alarm=0 final_rho=0.602 final_gap=0.231
+noise=0.02 seed=0 alarm=0 final_rho=0.476 final_gap=0.239
+noise=0.02 seed=1 alarm=0 final_rho=0.578 final_gap=0.270
+noise=0.02 seed=2 alarm=0 final_rho=0.637 final_gap=0.296
+noise=0.02 seed=3 alarm=0 final_rho=0.549 final_gap=0.227
+noise=0.05 seed=0 alarm=0 final_rho=0.784 final_gap=0.192
+noise=0.05 seed=1 alarm=0 final_rho=0.697 final_gap=0.243
+noise=0.05 seed=2 alarm=0 final_rho=0.575 final_gap=0.263
+noise=0.05 seed=3 alarm=0 final_rho=0.615 final_gap=0.203
+noise=0.10 seed=0 alarm=0 final_rho=1.000 final_gap=0.161
+noise=0.10 seed=1 alarm=0 final_rho=0.635 final_gap=0.200
+noise=0.10 seed=2 alarm=0 final_rho=0.721 final_gap=0.171
+noise=0.10 seed=3 alarm=0 final_rho=0.700 final_gap=0.152
+noise=0.20 seed=0 alarm=0 final_rho=0.719 final_gap=0.073
+noise=0.20 seed=1 alarm=0 final_rho=0.732 final_gap=0.102
+noise=0.20 seed=2 alarm=0 final_rho=0.958 final_gap=0.130
+noise=0.20 seed=3 alarm=0 final_rho=0.815 final_gap=0.110
+noise=0.40 seed=0 alarm=0 final_rho=1.000 final_gap=-0.022
+noise=0.40 seed=1 alarm=0 final_rho=0.776 final_gap=0.116
+noise=0.40 seed=2 alarm=0 final_rho=0.900 final_gap=0.061
+noise=0.40 seed=3 alarm=0 final_rho=0.696 final_gap=0.099
+
+E21 done in 163.7s
+  noise=0.00: alarm fired in 4/4 seeds; mean final gap = 0.264
+  noise=0.02: alarm fired in 4/4 seeds; mean final gap = 0.258
+  noise=0.05: alarm fired in 4/4 seeds; mean final gap = 0.225
+  noise=0.10: alarm fired in 4/4 seeds; mean final gap = 0.171
+  noise=0.20: alarm fired in 4/4 seeds; mean final gap = 0.104
+  noise=0.40: alarm fired in 4/4 seeds; mean final gap = 0.063

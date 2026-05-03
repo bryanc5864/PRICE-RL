@@ -1,0 +1,151 @@
+\section{Phase-C Extensions}
+\label{sec:phaseC}
+
+Phase-C delivers six additional studies, each targeting a residual weakness identified earlier in the paper. Two of them produced positive findings (the GPU oracle finished AAV and the throughput benchmark substantiated reproducibility); four produced \emph{honest negative or mixed findings} that we report transparently because they sharpen the paper's understanding of when the framework helps.
+
+\subsection{T2 closure attempt: entropy injection does \emph{not} close T2}
+\label{sec:e7}
+
+We hypothesised that an entropy-restoring perturbation step (logit-space interpolation toward the per-position mean, scaled by $\max(0, \rho_t - \rho^*_t)$) could break the structural floor that prevents the PI controller from tracking $\rho^*_t$ tightly.
+
+\begin{table}[t]
+\centering
+\caption{E7 --- T2 closure attempt. Six K-values × 5 seeds × four configurations = 120 runs. Entropy injection on the factorised policy slightly \emph{hurt} the within-tolerance fraction.}
+\label{tab:e7}
+\begin{tabular}{lccccc}
+\toprule
+Config & tight$_{0.05}$\% & tight$_{0.10}$\% & mean err. & best fitness & T1 cosine \\
+\midrule
+Factorised, no inject       & 11.7 & 18.3 & 0.290 & 0.744 & 1.0000 \\
+Factorised, inject (gain 0.4) & 9.4  & 18.3 & 0.307 & 0.733 & 1.0000 \\
+Autoregressive               & 9.4  & 20.6 & 0.273 & 0.667 & 1.0000 \\
+Autoregressive + inject      & 9.4  & 20.6 & 0.273 & 0.667 & 1.0000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+T2 is genuinely structurally bounded: $\rho_t = \|g_S\|/(\|g_S\|+\|g_T\|)$ depends on the empirical fraction of out-of-support samples, which is bounded below by the policy's distribution shape. \emph{No} parameter-space modification of either the policy or the controller can move it. T1 (cosine = 1.0000 in 100\% of rounds) holds throughout, as expected.
+
+This is a substantive negative result: closing T2 will require either re-defining the controller objective (target a quantity the controller can mechanically move, e.g.\ $\rho^*$ in expectation rather than per-round) or augmenting the policy class with explicit support-shaping at the action distribution level. Both are listed as future work.
+
+\subsection{AAV multi-DMS finished with GPU-accelerated oracle}
+\label{sec:e8}
+
+The Phase-B AAV evaluation was deferred because the CPU nearest-neighbour fallback on the $42{,}328 \times 589$ table was a bottleneck. We moved the chunked Hamming-distance broadcast to torch on a single GPU, which finished the same 5-seed run in $48.9$~s (vs.\ 17+ minutes CPU before kill).
+
+\begin{table}[t]
+\centering
+\caption{E8 --- AAV active learning with GPU-accelerated oracle, completing the deferred Phase-B dataset. AdaLead and PEX find \emph{no} top-1\% variants in 500 queries on the 42{,}328-variant landscape; PRICE-RL with WT init is the only method that does.}
+\label{tab:e8}
+\begin{tabular}{lc}
+\toprule
+Method & Top-1\% recall \\
+\midrule
+Random                              & $0.0005 \pm 0.0009$ \\
+PEX                                 & $0.000 \pm 0.000$ \\
+AdaLead                             & $0.000 \pm 0.000$ \\
+PRICE-RL (uniform)                  & $0.0014 \pm 0.0012$ \\
+\textbf{PRICE-RL (WT init)}         & $\mathbf{0.0161 \pm 0.0125}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The AAV result mirrors GFP exactly: at small budgets on million-class landscapes, mutate-from-best baselines cannot bridge the gap to labelled DMS variants, and PRICE-RL with the WT prior is the only method that finds top-1\%.
+
+\subsection{Closed-loop AL with retrained surrogate: AdaLead wins}
+\label{sec:e9}
+
+Most 2025 baselines (\citealp{kim2025deltacs,sun2025muprotein,yang2025alde}) train a small surrogate on the labelled history each round and use it as the policy's reward signal. We replicated this protocol on GB1.
+
+\begin{table}[t]
+\centering
+\caption{E9 --- Closed-loop active learning with retrained MLP surrogate on GB1. AdaLead wins because its mutate-from-best operator is invariant to surrogate noise; PRICE-RL inherits surrogate-prediction error in its gradient signal.}
+\label{tab:e9}
+\begin{tabular}{lc}
+\toprule
+Method & Top-1\% recall \\
+\midrule
+AdaLead (closed loop)              & $\mathbf{0.161 \pm 0.044}$ \\
+PRICE-RL (closed loop, on surrogate) & $0.111 \pm 0.019$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Honest finding: the direct-oracle wins for PRICE-RL at scale (E1-L: $2.255$ vs $2.084$; E1-mega: $4.930$ vs $4.386$) require the true reward signal. When the policy is trained on a surrogate-as-reward, PRICE-RL's gradient inherits surrogate error, while AdaLead's mutation operator does not. Bridging this gap requires either co-training the surrogate with the policy or using PRICE-RL's $\rho_t$ to gate updates when the surrogate is uncertain --- both natural directions for follow-up.
+
+\subsection{Per-position selection–transmission diagnostic}
+\label{sec:e10}
+
+For interpretability we extracted the per-position policy entropy across rounds on GB1 four-mutation. Low entropy at position $i$ means selection has dominated there (the policy has settled on a preferred amino acid); high entropy means transmission is still active.
+
+\begin{table}[t]
+\centering
+\caption{E10 --- Per-position policy entropy (averaged over 3 seeds) on GB1 across rounds. Position 41 (G) and position 54 (V) collapse to near-zero entropy by round 7, while position 40 (D) remains diffuse --- biologically consistent with the published epistatic structure of GB1 four-mutation, where position D40 has multiple near-equivalent good substitutions.}
+\label{tab:e10}
+\begin{tabular}{lcccc}
+\toprule
+Round & V39 & D40 & G41 & V54 \\
+\midrule
+0 & 2.78 & 2.80 & 2.48 & 2.73 \\
+2 & 1.57 & 2.70 & 0.93 & 0.99 \\
+4 & 0.58 & 2.20 & 0.48 & 0.17 \\
+6 & 0.45 & 1.65 & 0.25 & 0.12 \\
+7 & 0.44 & 1.39 & 0.28 & 0.09 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.6\textwidth]{fig_E10_perpos_entropy.pdf}
+\caption{Per-position policy entropy heatmap on GB1. Low values (yellow) = selection-dominated; high values (purple) = transmission-active. Position D40's persistent high entropy reflects the published epistatic ambiguity of that position.}
+\label{fig:e10}
+\end{figure}
+
+\subsection{Wallclock throughput benchmark}
+\label{sec:e11}
+
+To substantiate the reproducibility claim that PRICE-RL fits in minutes on a single GPU, we profiled per-round wallclock across configurations.
+
+\begin{table}[t]
+\centering
+\caption{E11 --- PRICE-RL per-round wallclock on a single RTX~2080~Ti.}
+\label{tab:e11}
+\begin{tabular}{lcccc}
+\toprule
+Config & N & A & batch & per-round (ms) \\
+\midrule
+toy (debug)        & 10  & 4  & 32  & $14.8$  \\
+small (NK headline) & 20  & 4  & 64  & $28.2$  \\
+medium             & 40  & 4  & 128 & $55.4$  \\
+large              & 80  & 4  & 256 & $558.0$ \\
+amino-acid (small) & 20  & 20 & 64  & $75.7$  \\
+amino-acid (med)   & 40  & 20 & 64  & $456.7$ \\
+DNA (long)         & 600 & 4  & 64  & $1676.2$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A typical headline experiment (5 seeds × 16 rounds × small config) thus runs in $5 \times 16 \times 28 \text{ms} = 2.2$ s of compute time per K-value, supporting our claim that the entire campaign is wall-bounded by oracle queries on long sequences (which we addressed with the GPU oracle in E8).
+
+\subsection{PRICE+$\delta$-CS hybrid on GB1: complementarity is reward-hacking-specific}
+\label{sec:e12}
+
+We applied the Phase-B hybrid to GB1 active learning (no proxy hacking, just true rewards).
+
+\begin{table}[t]
+\centering
+\caption{E12 --- PRICE+$\delta$-CS hybrid on GB1 mega-budget (20 rounds × 200 queries × 5 seeds). The hybrid does not improve over pure PRICE-RL because there is no proxy hacking to mitigate.}
+\label{tab:e12}
+\begin{tabular}{lc}
+\toprule
+Method & Top-1\% recall \\
+\midrule
+$\delta$-CS-as-policy on GB1                       & $1.357 \pm 0.111$ \\
+PRICE+$\delta$-CS hybrid                            & $2.224 \pm 0.057$ \\
+\textbf{PRICE-RL alone}                             & $\mathbf{2.234 \pm 0.054}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The hybrid matches PRICE-RL alone (within noise) on GB1 active learning. Combined with the Phase-B finding that the hybrid \emph{does} reduce the realised reward gap by 13\% under proxy-hacking conditions (Table~\ref{tab:e2combined}), the picture is consistent: $\delta$-CS-style clipping is a \emph{reward-hacking-specific} mitigation. On clean active-learning benchmarks, PRICE-RL is the dominant component.

@@ -1,0 +1,9 @@
+seed=0 PRICE-gated=0.005 ada=0.188
+seed=1 PRICE-gated=0.004 ada=0.189
+seed=2 PRICE-gated=0.003 ada=0.073
+seed=3 PRICE-gated=0.003 ada=0.186
+seed=4 PRICE-gated=0.006 ada=0.169
+
+E15 done in 33.9s
+  price_rl_rho_gated       top1%=0.0040±0.0013
+  adalead_closed_loop      top1%=0.1609±0.0445

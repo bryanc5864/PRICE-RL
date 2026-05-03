@@ -1,0 +1,9 @@
+seed=0 final ρ=0.003 unc=0.082 gap=0.161
+seed=1 final ρ=1.000 unc=0.069 gap=0.185
+seed=2 final ρ=1.000 unc=0.046 gap=0.125
+seed=3 final ρ=0.897 unc=0.031 gap=0.098
+seed=4 final ρ=1.000 unc=0.044 gap=0.126
+
+E20 done in 154.8s
+  Lead-time distribution (rounds): [3, -7, 9, -9, 8]
+  Mean lead = 0.8; pct ≥ 2 = 60.0%
