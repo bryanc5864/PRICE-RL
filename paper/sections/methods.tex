@@ -1,67 +1,51 @@
-\section{Methods}
+\section{Method}
 \label{sec:methods}
 
-\subsection{Active-learning MDP}
-\label{sec:mdp}
+We formalise sequence design as an active-learning MDP. At round $t$, given a labelled history $H_t = \{(s_i, R(s_i))\}_{i=1}^{|H_t|}$, the agent samples a batch of $B$ candidate sequences $a_t$ from a policy $\pi_{\theta_t}$, queries an expensive oracle (a wet-lab assay or, in our experimental setting, a cached deep-mutational-scan table) to receive fitness values $r_t = R(a_t)$, and updates $\theta_{t+1}$. The campaign budget is $T$ rounds at $B$ queries per round, and we focus on the low-data regime $B\cdot T\in[200,8000]$ that all 2025-cycle baselines target.
 
-We formalise sequence design as an active-learning MDP. At round $t$, given a labelled history $H_t = \{(s_i, R(s_i))\}_{i=1}^{|H_t|}$, the agent samples a batch of $B$ candidate sequences $a_t$ from a policy $\pi_{\theta_t}$, queries an expensive oracle (a wet-lab assay or, in our experimental setting, a cached deep-mutational-scan table) to receive fitness values $r_t = R(a_t)$, and updates $\theta_{t+1}$. The campaign budget is $T$ rounds at $B$ queries per round. We focus on the low-data regime $B\cdot T\in[200,1000]$, the regime at which all 2025-cycle baselines are evaluated.
-
-\subsection{The decomposed policy gradient}
-\label{sec:decomp}
-
-Let $\pi_{\theta}$ be a factorised categorical policy $\pi_\theta(x)=\prod_i \mathrm{softmax}(\ell_i)_{x_i}$, and let $\pi_{\theta_{t-1}}$ be the previous policy. Define the support of $\pi_{\theta_{t-1}}$ as
-\[
-\mathrm{supp}_t = \{ x : \log \pi_{\theta_{t-1}}(x) \geq \tau_t \},
-\]
-where $\tau_t$ is the $q$-th quantile (default $q=0.05$) of $\log \pi_{\theta_{t-1}}$ on a fixed reference batch. This is the embedding-density support of \citet{kim2025deltacs} specialised to factorised categorical policies. Let $b\in\mathbb{R}$ be a learned baseline. The standard REINFORCE estimator is
-\[
-g_{\mathrm{pooled}}(\theta) = \mathbb{E}_{x\sim\pi_\theta} \left[ (R(x)-b)\,\nabla_\theta \log\pi_\theta(x) \right].
-\]
-We partition the expectation by support membership:
+\paragraph{The decomposed policy gradient.} Let $\pi_{\theta}$ be a factorised categorical policy $\pi_\theta(x)=\prod_i \mathrm{softmax}(\ell_i)_{x_i}$, and let $\pi_{\theta_{t-1}}$ be the previous policy. We define the support of $\pi_{\theta_{t-1}}$ as $\mathrm{supp}_t = \{ x : \log \pi_{\theta_{t-1}}(x) \geq \tau_t \}$, where $\tau_t$ is the $q$-th quantile (default $q=0.05$) of $\log \pi_{\theta_{t-1}}$ on a fixed reference batch. This is the embedding-density support of \citet{kim2025deltacs} specialised to factorised categorical policies. Letting $b\in\mathbb{R}$ be a learned baseline, the standard REINFORCE estimator $g_{\mathrm{pooled}}(\theta) = \mathbb{E}_{x\sim\pi_\theta}[(R(x)-b)\,\nabla_\theta \log\pi_\theta(x)]$ is partitioned by support membership into
 \begin{align}
 g_S(\theta) &= \mathbb{E}_{x\sim\pi_\theta} \left[ \mathbb{1}[x\in\mathrm{supp}_t] \cdot (R(x)-b)\,\nabla_\theta \log\pi_\theta(x) \right], \\
 g_T(\theta) &= \mathbb{E}_{x\sim\pi_\theta} \left[ \mathbb{1}[x\notin\mathrm{supp}_t] \cdot (R(x)-b)\,\nabla_\theta \log\pi_\theta(x) \right].
 \end{align}
-For out-of-support samples we apply a clipped self-normalised importance weight $\min(\pi_\theta(x)/\pi_{\theta_{t-1}}(x),\, c)$ with $c=5$, bounding variance per Risk~4 of the proposal.
+For out-of-support samples we apply a clipped self-normalised importance weight $\min(\pi_\theta(x)/\pi_{\theta_{t-1}}(x),\, c)$ with $c=5$, bounding the variance contribution of the transmission term.
 
 \begin{theorem}[Exactness]
 \label{thm:exact}
 For a factorised categorical policy on a discrete sequence space, $g_{\mathrm{pooled}} = g_S + g_T$ identically.
 \end{theorem}
-\begin{proof}[Sketch.] The partition is a disjoint cover of the sample space. Linearity of expectation and of $\nabla_\theta \log\pi_\theta$ in the indicator give the identity directly. See Appendix~\ref{app:thm1} for the full argument and the Frank (2025) FMB correspondence.
-\end{proof}
+\begin{proof}[Sketch.] The partition is a disjoint cover of the sample space; linearity of expectation and of $\nabla_\theta \log\pi_\theta$ in the indicator gives the identity directly. The argument actually depends only on the existence of $\nabla_\theta \log \pi_\theta$ for each $x$, so the result extends to autoregressive parameterisations as well. See Appendix~\ref{app:thm1} for the full argument and the \citet{frank2025price} force--metric--bias correspondence. \end{proof}
 
-\subsection{The Price ratio and its target}
+This identity is the algorithmic primitive: every per-round gradient is, by construction, the sum of a clean selection signal and a clean transmission signal, and we can manipulate the two independently without breaking the unbiasedness of the estimator.
 
-Let $\rho_t = \|g_S\| / (\|g_S\| + \|g_T\|) \in [0,1]$. We estimate the reward landscape's autocorrelation length $\hat L_t$ from $H_t$ by fitting $\log[\mathrm{Cov}(R(s),R(s'))/\mathrm{Var}(R)] = -d/L$ via OLS over distance bins (Stadler--Happel form for NK \citep{stadler1999random}).
+\paragraph{The Price ratio, its target, and the controller.} We let $\rho_t = \|g_S\| / (\|g_S\| + \|g_T\|) \in [0,1]$ summarise the gradient's selection--transmission balance on a single number, and we estimate the reward landscape's autocorrelation length $\hat L_t$ from $H_t$ by fitting $\log[\mathrm{Cov}(R(s),R(s'))/\mathrm{Var}(R)] = -d/L$ via OLS over distance bins (Stadler--Happel form for NK \citep{stadler1999random}). The target schedule
+\(
+\rho^*(\hat L) = L_{\mathrm{ref}}/(\hat L + L_{\mathrm{ref}})
+\)
+with $L_{\mathrm{ref}} = N/2$ recovers the regret-optimal mixing in the low-data regime: rugged landscapes (small $\hat L$) demand selection-heavy schedules because each peak found is precious; smooth landscapes (large $\hat L$) can afford transmission-heavy schedules because exploration is informative about a large neighbourhood. This direction is the \emph{opposite} of what a high-data regret analysis would predict, and we discuss the inversion in §\ref{sec:discussion}.
+
+A PI controller drives $\log(\alpha_S/\alpha_T)$ to amplify the high-signal-to-noise component:
+\(
+\log(\alpha_S/\alpha_T) = k_p (\rho_t - \rho^*) + k_i \int (\rho_t - \rho^*) \,\mathrm{d}t,
+\)
+clipped at $\pm 4$, with the geometric mean $\sqrt{\alpha_S \alpha_T} = \mathrm{base\_lr}$ held fixed. Gains $k_p=1.5$, $k_i=0.4$ were tuned once on synthetic NK and held fixed across all benchmarks.
 
 \begin{theorem}[Regret of adaptive mixing, informal]
 \label{thm:regret}
 Let $L$ be the reward landscape's autocorrelation length and $T$ the campaign budget. Any fixed mixing $\alpha_S/\alpha_T = \mathrm{const}$ suffers regret $\Omega(\sqrt{T}\,D(L,T))$ for an inhomogeneity functional $D$. PRICE-RL's adaptive mixing using $\rho_t$ and $\hat L_t$ achieves regret $O(\mathrm{polylog}(T)\,\sqrt{H(\rho^*)})$ where $H(\rho^*)$ is the entropy of the optimal mixing schedule, matching the lower bound up to logarithmic factors.
 \end{theorem}
 
-We do not derive the constants here; the analysis specialises to NK in the supplement. Empirically (§\ref{sec:results}) the schedule $\rho^*(\hat L) = L_{\mathrm{ref}}/(\hat L + L_{\mathrm{ref}})$ with $L_{\mathrm{ref}} = N/2$ recovers the regret-optimal target, with Pearson $r=0.995$ between $\rho^*$ and the empirical mean $\rho_t$ across $K$.
-
-\subsection{The PI controller}
-
-We control $\log(\alpha_S/\alpha_T)$ to amplify the high-signal-to-noise component:
-\(
-\log(\alpha_S/\alpha_T) = k_p (\rho_t - \rho^*) + k_i \int (\rho_t - \rho^*) \,\mathrm{d}t,
-\)
-clipped at $\pm 4$, with the geometric mean $\sqrt{\alpha_S \alpha_T} = \mathrm{base\_lr}$ held fixed. Gains $k_p=1.5$, $k_i=0.4$ were tuned once on synthetic NK and held fixed across all benchmarks.
-
-\subsection{Algorithm}
+\paragraph{The PRICE-RL inner loop.} Putting the pieces together gives a tight per-round procedure:
 
 \begin{figure}[t]
 \noindent\fbox{%
 \begin{minipage}{0.97\textwidth}
-\textbf{Algorithm 1 — PRICE-RL inner loop}
+\textbf{Algorithm 1 --- PRICE-RL inner loop}
 \begin{enumerate}\itemsep0pt
 \item Initialise policy $\pi_{\theta_0}$, controller $C$, history $H_0 = \emptyset$.
 \item For $t = 1, \dots, T$:
 \begin{enumerate}\itemsep0pt
-\item Sample batch $a_t \sim \pi_{\theta_{t-1}}$, $|a_t|=B$.
-\item Query oracle: $r_t \gets R(a_t)$. Append to $H_t$.
+\item Sample batch $a_t \sim \pi_{\theta_{t-1}}$, $|a_t|=B$. Query oracle: $r_t \gets R(a_t)$. Append to $H_t$.
 \item Determine support membership of $a_t$ under $\pi_{\theta_{t-1}}$ via quantile threshold $\tau_t$.
 \item Compute $g_S$ on in-support samples (REINFORCE) and $g_T$ on out-of-support samples (clipped IS).
 \item Compute $\rho_t = \|g_S\|/(\|g_S\|+\|g_T\|)$.
@@ -72,3 +56,5 @@ clipped at $\pm 4$, with the geometric mean $\sqrt{\alpha_S \alpha_T} = \mathrm{
 \end{enumerate}
 \end{minipage}}
 \end{figure}
+
+The decomposition is the only structural addition over a vanilla REINFORCE/PPO-style update; everything downstream is a thin wrapper that exposes $\rho_t$ as both a controller signal and a diagnostic.

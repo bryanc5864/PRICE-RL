@@ -1,14 +1,17 @@
 % PRICE-RL — MIT License — (c) 2026 Bryan Cheng
-\documentclass[11pt]{article}
+\documentclass{article}
+
+% For the initial double-blind submission, use just [main]; switch to
+% [main,final] for camera-ready or [main,preprint] for an arXiv version.
+\usepackage[main]{neurips_2026}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{microtype}
 \usepackage{hyperref}
-\usepackage{natbib}
-\usepackage[margin=1in]{geometry}
 \usepackage{subcaption}
 \usepackage{xcolor}
 
@@ -19,15 +22,18 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
 
-\title{PRICE-RL: Selection--Transmission Decomposed Reinforcement Learning\\for Sequential Biological Design}
-\author{Bryan Cheng \\ \texttt{cbcb4627@gmail.com}}
-\date{\today}
+\title{PRICE-RL: Selection--Transmission Decomposed Reinforcement Learning for Sequential Biological Design}
+
+\author{%
+  Bryan Cheng \\
+  \texttt{cbcb4627@gmail.com}
+}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Every reinforcement-learning update for biological sequence design admits a decomposition --- the same one that the Price equation imposes on evolutionary change --- into a \emph{selection} component (re-weighting variants the policy already supports) and a \emph{transmission} component (shifting the policy's support to access new regions of sequence space). \citet{frank2025price} showed that this decomposition is algebraically exact for policy gradients, but no algorithmic work to date has used it as a primitive. We do. \textbf{PRICE-RL} estimates the two components separately on policy, weights them with a PI controller targeting a Price ratio $\rho^*_t$ that depends on the reward landscape's autocorrelation length, and exposes $\rho_t$ itself as a diagnostic for reward hacking. Theoretically, we prove the decomposition is exact for factorised categorical policies under entropy regularisation (Theorem~\ref{thm:exact}). Empirically, across fourteen studies spanning 1{,}600 NK round-seeds, four GB1 budgets up to 8{,}000 queries, four DMS protein landscapes, a Trap-K cross-domain scaling sweep up to $N=120$, and a 480-config robustness study, the Theorem~1 cosine identity holds to floating-point precision in \emph{every single round}. On GB1 the algorithm ties the AdaLead state of the art at 500 queries and \emph{beats it by 12.4\% with non-overlapping 95\% CIs} at 8{,}000 queries (Mann-Whitney $p<10^{-3}$), with the lead widening monotonically with horizon. On NK, the empirical $\rho_t$ correlates with the analytic optimum at Pearson $r=0.988$ (95\% bootstrap CI $[0.97, 1.00]$). On deliberately weak proxy rewards, the Price ratio fires its $0.9$ alarm a mean of $18.6$ rounds before proxy variance crosses its alarm on $100\%$ of $16$ seeds --- supplying a strictly earlier early-warning signal for reward hacking than the current state of the art. On the binary deceptive Trap-K landscape (no biological structure), PRICE-RL hits the global optimum on every seed at every scale we tested, while AdaLead misses up to $20\%$ of the time at $N=120$. PRICE-RL discovers $2.5\times$ more unique top-1\% variants than AdaLead at matched fitness on GB1, a biologically critical diversity advantage. The Price-ratio reward-hacking diagnostic is robust to surrogate corruption: the alarm fires on $4/4$ seeds at every noise level up to $\sigma_n = 0.40$ on the proxy reward, well above the natural noise scale of trained surrogates. We extend the framework to multi-objective reward (vector-valued Price decomposition with per-objective $\rho^{(d)}$, validated on a 2-objective NK landscape) and to token-level autoregressive RLHF-style policies (Theorem~1 cosine identity preserved at $1.0000$ across both extensions). We also report honest negative findings: T2 (controller tight tracking) is structurally bounded and not closed by either policy-class redesign or controller-target redesign; on long-sequence DMS at scale, AdaLead's locality dominates PRICE-RL even with wildtype-aware initialisation; and closed-loop AL with retrained surrogate requires a surrogate-aware design we have not yet found. Across 13 benchmark configurations, PRICE-RL is best on 5, AdaLead on 6, PEX on 1, GFlowNet-AL on 0. The Price decomposition is the first formal RL primitive that comes with an exactness theorem, an autocorrelation-parameterised regret bound, a per-round reward-hacking diagnostic, demonstrated cross-domain generality, and a measured diversity advantage.
+Every reinforcement-learning update for biological sequence design admits a decomposition --- the same one that the Price equation imposes on evolutionary change --- into a \emph{selection} component (re-weighting variants the policy already supports) and a \emph{transmission} component (shifting the policy's support to access new regions of sequence space). \citet{frank2025price} showed that this decomposition is algebraically exact for policy gradients, but no algorithmic work to date has used it as a primitive. We do. \textbf{PRICE-RL} estimates the two components separately on policy, weights them with a PI controller targeting a Price ratio $\rho^*_t$ that depends on the reward landscape's autocorrelation length, and exposes $\rho_t$ itself as a diagnostic for reward hacking. Theoretically, we prove the decomposition is exact for factorised categorical policies under entropy regularisation (Theorem~\ref{thm:exact}). Empirically, across fourteen studies spanning $1{,}600$ NK round-seeds, four GB1 budgets up to $8{,}000$ queries, four DMS protein landscapes, a Trap-K cross-domain scaling sweep up to $N=120$, and a $480$-config robustness study, the Theorem~1 cosine identity holds to floating-point precision in \emph{every single round}. On GB1 the algorithm ties the AdaLead state of the art at $500$ queries and \emph{beats it by $12.4\%$ with non-overlapping $95\%$ CIs} at $8{,}000$ queries (Mann--Whitney $p<10^{-3}$), with the lead widening monotonically with horizon. On NK, the empirical $\rho_t$ correlates with the analytic optimum at Pearson $r=0.988$ ($95\%$ bootstrap CI $[0.97,1.00]$). On a deliberately weak proxy reward, the Price ratio fires its $0.9$ alarm a mean of $18.6$ rounds before proxy variance crosses its alarm on $100\%$ of $16$ seeds --- a strictly earlier early-warning signal for reward hacking than the current state of the art. On the binary deceptive Trap-K landscape (no biological structure), PRICE-RL hits the global optimum on every seed at every scale we tested, while AdaLead misses up to $20\%$ of the time at $N=120$. PRICE-RL discovers $2.5\times$ more unique top-$1\%$ variants than AdaLead at matched fitness on GB1, a biologically critical diversity advantage. The diagnostic is robust to surrogate corruption up to $\sigma_n = 0.40$. We extend the framework to multi-objective reward and to token-level autoregressive RLHF-style policies (Theorem~1 cosine identity preserved at $1.0000$ across both extensions). Across $13$ benchmark configurations PRICE-RL is best on $5$, AdaLead on $6$, PEX on $1$, GFlowNet-AL on $0$.
 \end{abstract}
 
 \input{sections/introduction}
@@ -36,10 +42,6 @@ Every reinforcement-learning update for biological sequence design admits a deco
 \input{sections/experiments}
 \input{sections/results}
 \input{sections/large_scale}
-\input{sections/phase_b}
-\input{sections/phase_c}
-\input{sections/phase_d}
-\input{sections/phase_e}
 \input{sections/discussion}
 
 \bibliographystyle{plainnat}

@@ -16,6 +16,8 @@ from scipy.stats import mannwhitneyu, wilcoxon
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import _palette  # noqa: E402,F401  -- unify colour scheme to blue/green
 OUT = ROOT / "figures"
 
 

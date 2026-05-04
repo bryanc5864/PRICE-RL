@@ -14,6 +14,8 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import _palette  # noqa: E402,F401  -- unify colour scheme to blue/green
 OUT = ROOT / "figures"
 
 
@@ -222,7 +224,7 @@ def analyze_E6():
         # Heatmap aggregated over q
         agg = d.groupby(["base_lr", "inner_steps"])["best_mean"].mean().unstack()
         fig, ax = plt.subplots(figsize=(4, 3))
-        im = ax.imshow(agg.values, aspect="auto", cmap="viridis", origin="lower")
+        im = ax.imshow(agg.values, aspect="auto", cmap="blue_green", origin="lower")
         ax.set_xticks(range(agg.shape[1])); ax.set_xticklabels(agg.columns)
         ax.set_yticks(range(agg.shape[0])); ax.set_yticklabels(agg.index)
         ax.set_xlabel("inner_steps"); ax.set_ylabel("base_lr")

@@ -17,7 +17,7 @@ Then $g_{\mathrm{pool}}(\theta) = g_S(\theta) + g_T(\theta)$ for every $\theta \
 \end{theorem}
 
 \begin{proof}
-The set $\{S, \bar S\}$ is a partition of $X$ by definition: $S \cup \bar S = X$ and $S \cap \bar S = \emptyset$, and the indicator identity $\mathbb{1}_S(x) + \mathbb{1}_{\bar S}(x) = 1$ holds for every $x \in X$. Multiplying both sides of this identity by $\pi_\theta(x)\,(R(x)-b)\,\nabla_\theta \log\pi_\theta(x)$ — a real-valued vector function of $x$ — and summing over $x \in X$ gives
+The set $\{S, \bar S\}$ is a partition of $X$ by definition: $S \cup \bar S = X$ and $S \cap \bar S = \emptyset$, and the indicator identity $\mathbb{1}_S(x) + \mathbb{1}_{\bar S}(x) = 1$ holds for every $x \in X$. Multiplying both sides of this identity by $\pi_\theta(x)\,(R(x)-b)\,\nabla_\theta \log\pi_\theta(x)$ --- a real-valued vector function of $x$ --- and summing over $x \in X$ gives
 \[
 \sum_{x\in X} \!\pi_\theta(x)\,(R(x)-b)\,\nabla_\theta \log\pi_\theta(x)
 \;=\; \sum_{x\in S} \!\pi_\theta(x)\,(R(x)-b)\,\nabla_\theta \log\pi_\theta(x)
@@ -59,7 +59,7 @@ where $\mathcal C$ is the set of top-$k$ best-fitness sequences in the labelled 
 \[
 g_S^{\mathrm{loc}}(\theta) = \sum_{x \in S} \pi_\theta(x)\, w_{\mathrm{loc}}(x)\, (R(x) - b)\, \nabla_\theta \log\pi_\theta(x),
 \]
-with $g_T^{\mathrm{loc}}$ analogous on $\bar S$. The partition identity is preserved exactly because $w_{\mathrm{loc}}$ is per-sample and does not couple the two sums; Theorem~\ref{thm:exact} applies after the affine transformation $R \to w_{\mathrm{loc}} \cdot R$. The Price ratio $\rho_t = \|g_S^{\mathrm{loc}}\|/(\|g_S^{\mathrm{loc}}\| + \|g_T^{\mathrm{loc}}\|)$ remains an exact reflection of the locality-conditioned selection–transmission balance.
+with $g_T^{\mathrm{loc}}$ analogous on $\bar S$. The partition identity is preserved exactly because $w_{\mathrm{loc}}$ is per-sample and does not couple the two sums; Theorem~\ref{thm:exact} applies after the affine transformation $R \to w_{\mathrm{loc}} \cdot R$. The Price ratio $\rho_t = \|g_S^{\mathrm{loc}}\|/(\|g_S^{\mathrm{loc}}\| + \|g_T^{\mathrm{loc}}\|)$ remains an exact reflection of the locality-conditioned selection--transmission balance.
 
 \section{Multi-objective Price decomposition}
 \label{app:moo}
@@ -114,4 +114,9 @@ On a single RTX 2080 Ti the entire campaign reproduces in $\sim$2 hours wallcloc
 \section{Threshold pass-rate audit}
 \label{app:audit}
 
-Iteration 1 (Phase A) standardised the centred reward (an affine transform that preserves the Price decomposition exactly), bringing GB1 top-1\% recall from $0.005$ to $0.046$. Iteration 2 swept inner steps and base learning rate on synthetic NK and adopted $(\text{inner}=8, \text{lr}=2)$ as the default applied uniformly to all benchmarks --- $0.046 \to 0.130$. Iteration 3 inverted the $\rho^*(L)$ formula based on the negative-correlation finding from the first end-to-end analysis run --- $0.130 \to 0.161$, ties AdaLead at 500-q. Subsequent budget extensions to 4000-q and 8000-q yielded the non-overlapping-CI wins reported in §\ref{sec:e1l} and §\ref{sec:e1mega}.
+Iteration 1 (Phase A) standardised the centred reward (an affine transform that preserves the Price decomposition exactly), bringing GB1 top-$1\%$ recall from $0.005$ to $0.046$. Iteration 2 swept inner steps and base learning rate on synthetic NK and adopted $(\text{inner}=8, \text{lr}=2)$ as the default applied uniformly to all benchmarks --- $0.046 \to 0.130$. Iteration 3 inverted the $\rho^*(L)$ formula based on the negative-correlation finding from the first end-to-end analysis run --- $0.130 \to 0.161$, ties AdaLead at 500-q. Subsequent budget extensions to $4{,}000$ and $8{,}000$ queries yielded the non-overlapping-CI wins reported in §\ref{sec:large_scale}.
+
+\input{sections/phase_b}
+\input{sections/phase_c}
+\input{sections/phase_d}
+\input{sections/phase_e}

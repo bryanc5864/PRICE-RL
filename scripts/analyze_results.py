@@ -18,6 +18,7 @@ sys.path.insert(0, str(ROOT))
 import matplotlib  # noqa: E402
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
+import _palette  # noqa: E402,F401  -- unifies the colour scheme to blue/green
 
 OUT = ROOT / "figures"
 OUT.mkdir(exist_ok=True)

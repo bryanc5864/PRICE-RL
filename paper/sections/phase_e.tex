@@ -1,7 +1,7 @@
-\section{Phase-E Extensions Toward NeurIPS Main Track}
-\label{sec:phaseE}
+\section{Phase-E extensions: locality, multi-objective, token-level RLHF, and corruption}
+\label{app:phaseE}
 
-Phase-E delivers four new algorithmic primitives and a formal-proof upgrade. The pattern across these results is consistent with the synthesis of §\ref{sec:phaseD}: PRICE-RL is a strong, general-purpose primitive on short combinatorial / deceptive / small-budget / diverse-set / reward-hacking benchmarks, and it integrates cleanly with locality / multi-objective / token-level extensions while preserving Theorem~\ref{thm:exact} exactly. Long-sequence DMS at scale remains an open challenge that our locality variant only partially addresses.
+Phase-E delivers four new algorithmic primitives and a formal-proof upgrade. The pattern across these results is consistent with the synthesis of §\ref{app:phaseD}: PRICE-RL is a strong, general-purpose primitive on short combinatorial / deceptive / small-budget / diverse-set / reward-hacking benchmarks, and it integrates cleanly with locality / multi-objective / token-level extensions while preserving Theorem~\ref{thm:exact} exactly. Long-sequence DMS at scale remains an open challenge that our locality variant only partially addresses.
 
 \subsection{Locality-aware PRICE-RL}
 \label{sec:e18}
@@ -10,7 +10,7 @@ We augment PRICE-RL with a per-candidate Hamming-distance kernel $w_{\mathrm{loc
 
 \begin{table}[t]
 \centering
-\caption{E18 --- Locality-aware PRICE-RL on long-sequence DMS, 4{,}000-query budget. Locality narrows the gap on Enhancer (within 1.3$\times$ of AdaLead) but does not close it on TEM-1. The radius–regime tradeoff is honest: too tight a kernel reproduces AdaLead, too loose retains the diffuse-policy drawback.}
+\caption{E18 --- Locality-aware PRICE-RL on long-sequence DMS, 4{,}000-query budget. Locality narrows the gap on Enhancer (within 1.3$\times$ of AdaLead) but does not close it on TEM-1. The radius--regime tradeoff is honest: too tight a kernel reproduces AdaLead, too loose retains the diffuse-policy drawback.}
 \label{tab:e18}
 \begin{tabular}{lcc}
 \toprule
@@ -29,7 +29,7 @@ We extend the framework to vector-valued reward $R: X \to \mathbb{R}^D$ (Appendi
 
 \begin{table}[t]
 \centering
-\caption{E19 --- Multi-objective PRICE-RL on a 2-objective NK landscape (uniform-weight scalarised reward, 12 rounds × 64 queries × 5 seeds). Hypervolume and Pareto-front size, where higher is better.}
+\caption{E19 --- Multi-objective PRICE-RL on a 2-objective NK landscape (uniform-weight scalarised reward, 12 rounds \(\times\) 64 queries \(\times\) 5 seeds). Hypervolume and Pareto-front size, where higher is better.}
 \label{tab:e19}
 \begin{tabular}{lcc}
 \toprule
@@ -49,7 +49,7 @@ The framework supports vector-valued reward (an algorithmic novelty over the bin
 
 To demonstrate that the Price-ratio reward-hacking diagnostic transfers beyond biology, we built a token-level autoregressive setup: 16-token sequences over a 32-token vocabulary, true reward defined by a bigram preference, proxy reward learnt by a small MLP on 200 labels (mimicking RLHF's learnt reward model). PRICE-RL's gradient is computed on the proxy reward; we track $\rho_t$ vs.\ the true-vs-proxy reward gap.
 
-The token-level dynamics are sharper than the NK case: $\rho_t$ either saturates near 1 quickly (reward-hacking trajectory found) or stays low (policy fails to find a hackable proxy artefact). Per-seed final values appear in the experiment trace; the ρ-as-diagnostic property is preserved at the token-level autoregressive policy class without modification, validating the proposal's RLHF-transfer claim.
+The token-level dynamics are sharper than the NK case: $\rho_t$ either saturates near 1 quickly (reward-hacking trajectory found) or stays low (policy fails to find a hackable proxy artefact). Per-seed final values appear in the experiment trace; the \(\rho\)-as-diagnostic property is preserved at the token-level autoregressive policy class without modification, validating the proposal's RLHF-transfer claim.
 
 \subsection{Surrogate corruption robustness}
 \label{sec:e21}
@@ -60,4 +60,3 @@ We injected Gaussian noise of standard deviation $\sigma_n \in \{0, 0.02, 0.05, 
 \label{sec:thm1formal}
 
 Appendix~\ref{app:thm1} now contains the complete algebraic derivation of Theorem~\ref{thm:exact} (replacing the sketch). Corollary~\ref{cor:thm1ar} extends the result to autoregressive policies, explaining why our empirical T1 cosine equals $1.0000$ for both factorised and AR policy classes. The proof relies only on the partition-of-unity identity $\mathbb{1}_S + \mathbb{1}_{\bar S} = 1$ and the existence of $\nabla_\theta \log\pi_\theta$, generalising to any differentiable parameterised distribution over the discrete sequence space.
-\end{section}

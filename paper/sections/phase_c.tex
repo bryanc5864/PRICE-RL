@@ -1,5 +1,5 @@
-\section{Phase-C Extensions}
-\label{sec:phaseC}
+\section{Phase-C extensions: T2 closure attempts, GPU oracle, and surrogate-aware AL}
+\label{app:phaseC}
 
 Phase-C delivers six additional studies, each targeting a residual weakness identified earlier in the paper. Two of them produced positive findings (the GPU oracle finished AAV and the throughput benchmark substantiated reproducibility); four produced \emph{honest negative or mixed findings} that we report transparently because they sharpen the paper's understanding of when the framework helps.
 
@@ -10,7 +10,7 @@ We hypothesised that an entropy-restoring perturbation step (logit-space interpo
 
 \begin{table}[t]
 \centering
-\caption{E7 --- T2 closure attempt. Six K-values × 5 seeds × four configurations = 120 runs. Entropy injection on the factorised policy slightly \emph{hurt} the within-tolerance fraction.}
+\caption{E7 --- T2 closure attempt. Six K-values \(\times\) 5 seeds \(\times\) four configurations = 120 runs. Entropy injection on the factorised policy slightly \emph{hurt} the within-tolerance fraction.}
 \label{tab:e7}
 \begin{tabular}{lccccc}
 \toprule
@@ -73,7 +73,7 @@ PRICE-RL (closed loop, on surrogate) & $0.111 \pm 0.019$ \\
 
 Honest finding: the direct-oracle wins for PRICE-RL at scale (E1-L: $2.255$ vs $2.084$; E1-mega: $4.930$ vs $4.386$) require the true reward signal. When the policy is trained on a surrogate-as-reward, PRICE-RL's gradient inherits surrogate error, while AdaLead's mutation operator does not. Bridging this gap requires either co-training the surrogate with the policy or using PRICE-RL's $\rho_t$ to gate updates when the surrogate is uncertain --- both natural directions for follow-up.
 
-\subsection{Per-position selection–transmission diagnostic}
+\subsection{Per-position selection--transmission diagnostic}
 \label{sec:e10}
 
 For interpretability we extracted the per-position policy entropy across rounds on GB1 four-mutation. Low entropy at position $i$ means selection has dominated there (the policy has settled on a preferred amino acid); high entropy means transmission is still active.
@@ -126,7 +126,7 @@ DNA (long)         & 600 & 4  & 64  & $1676.2$ \\
 \end{tabular}
 \end{table}
 
-A typical headline experiment (5 seeds × 16 rounds × small config) thus runs in $5 \times 16 \times 28 \text{ms} = 2.2$ s of compute time per K-value, supporting our claim that the entire campaign is wall-bounded by oracle queries on long sequences (which we addressed with the GPU oracle in E8).
+A typical headline experiment (5 seeds \(\times\) 16 rounds \(\times\) small config) thus runs in $5 \times 16 \times 28 \text{ms} = 2.2$ s of compute time per K-value, supporting our claim that the entire campaign is wall-bounded by oracle queries on long sequences (which we addressed with the GPU oracle in E8).
 
 \subsection{PRICE+$\delta$-CS hybrid on GB1: complementarity is reward-hacking-specific}
 \label{sec:e12}
@@ -135,7 +135,7 @@ We applied the Phase-B hybrid to GB1 active learning (no proxy hacking, just tru
 
 \begin{table}[t]
 \centering
-\caption{E12 --- PRICE+$\delta$-CS hybrid on GB1 mega-budget (20 rounds × 200 queries × 5 seeds). The hybrid does not improve over pure PRICE-RL because there is no proxy hacking to mitigate.}
+\caption{E12 --- PRICE+$\delta$-CS hybrid on GB1 mega-budget (20 rounds \(\times\) 200 queries \(\times\) 5 seeds). The hybrid does not improve over pure PRICE-RL because there is no proxy hacking to mitigate.}
 \label{tab:e12}
 \begin{tabular}{lc}
 \toprule

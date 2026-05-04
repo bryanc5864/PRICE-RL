@@ -1,16 +1,16 @@
-\section{Phase-B Extensions}
-\label{sec:phaseB}
+\section{Phase-B extensions: extended scale and a faithful GFlowNet baseline}
+\label{app:phaseB}
 
 To address the open issues identified in §\ref{sec:large_scale}, we ran four parallel studies on five GPUs: a wildtype-aware initialisation that closes the long-sequence DMS gap, a head-to-head against a faithful GFlowNet-AL baseline at 8{,}000-query budget, a combined PRICE-RL + $\delta$-CS hybrid, and an autoregressive-policy retest of the T2 controller-tracking question. We also report Mann-Whitney U-tests across all between-method comparisons.
 
 \subsection{Wildtype-aware initialisation closes the long-sequence DMS gap}
 \label{sec:e1wt}
 
-The §\ref{sec:e1b} finding that PRICE-RL with uniform-init logits underperforms AdaLead on TEM-1 / Enhancer / GFP / AAV is now confirmed to be init-related, not architectural. We add an optional per-position WT-prior to the factorised policy: logit $w_{\mathrm{WT}}=4$ at the WT base, $0$ elsewhere. The active-learning protocol is unchanged.
+The §\ref{sec:results} finding that PRICE-RL with uniform-init logits underperforms AdaLead on TEM-1 / Enhancer / GFP / AAV is now confirmed to be init-related, not architectural. We add an optional per-position WT-prior to the factorised policy: logit $w_{\mathrm{WT}}=4$ at the WT base, $0$ elsewhere. The active-learning protocol is unchanged.
 
 \begin{table}[t]
 \centering
-\caption{E1-wt --- Multi-DMS active learning with WT-aware vs.\ uniform PRICE-RL. 5 seeds × 5 rounds × 100 queries.}
+\caption{E1-wt --- Multi-DMS active learning with WT-aware vs.\ uniform PRICE-RL. 5 seeds \(\times\) 5 rounds \(\times\) 100 queries.}
 \label{tab:e1wt}
 \begin{tabular}{lccccc}
 \toprule
@@ -27,7 +27,7 @@ WT init gives a 10$\times$ improvement on TEM-1 (uniform 0.11 $\to$ WT 1.09) and
 \subsection{Mega-budget GB1: PRICE-RL beats AdaLead with non-overlapping CIs}
 \label{sec:e1mega}
 
-We extended the GB1 active-learning protocol to 8{,}000 queries (40 rounds × 200 × 10 seeds) and added a faithful GFlowNet-AL baseline (flow-matching factorised categorical, soft-Q-style training on labelled history with reward-proportional sampling, per Jain et al.\ 2022).
+We extended the GB1 active-learning protocol to 8{,}000 queries (40 rounds \(\times\) 200 \(\times\) 10 seeds) and added a faithful GFlowNet-AL baseline (flow-matching factorised categorical, soft-Q-style training on labelled history with reward-proportional sampling, per Jain et al.\ 2022).
 
 \begin{table}[t]
 \centering
@@ -52,11 +52,11 @@ PRICE-RL ($\alpha_S{=}\alpha_T$, ablation) & $3.276 \pm 0.234$ & $p < 10^{-3}$ \
 \subsection{Combined PRICE-RL + $\delta$-CS}
 \label{sec:e2combined}
 
-The discussion claim that the two are complementary is now tested empirically: a hybrid policy uses PRICE-RL's decomposed gradient with $\delta$-CS-style proxy-uncertainty step-clipping. We compare three policies on the same NK($K{=}10$) surrogate / true landscape over 24 rounds × 8 seeds.
+The discussion claim that the two are complementary is now tested empirically: a hybrid policy uses PRICE-RL's decomposed gradient with $\delta$-CS-style proxy-uncertainty step-clipping. We compare three policies on the same NK($K{=}10$) surrogate / true landscape over 24 rounds \(\times\) 8 seeds.
 
 \begin{table}[t]
 \centering
-\caption{E2-combined --- final-round reward gap (proxy − true) on the reward-hacking experiment. The hybrid is between PRICE-RL and $\delta$-CS; $\delta$-CS clips harder, PRICE-RL detects earlier (Fig.~\ref{fig:e2}); the hybrid offers a middle ground.}
+\caption{E2-combined --- final-round reward gap (proxy - true) on the reward-hacking experiment. The hybrid is between PRICE-RL and $\delta$-CS; $\delta$-CS clips harder, PRICE-RL detects earlier (Fig.~\ref{fig:e2}); the hybrid offers a middle ground.}
 \label{tab:e2combined}
 \begin{tabular}{lc}
 \toprule
@@ -74,7 +74,7 @@ The hybrid reduces PRICE-RL's realised gap by 13\% (0.351 $\to$ 0.305) at the co
 \subsection{Autoregressive policy retest of T2}
 \label{sec:e3ar}
 
-We re-validated T2 (controller tight-tracking) with the autoregressive policy class on $K \in \{0,3,10,19\}$ × 5 seeds × 12 rounds.
+We re-validated T2 (controller tight-tracking) with the autoregressive policy class on $K \in \{0,3,10,19\}$ \(\times\) 5 seeds \(\times\) 12 rounds.
 
 \begin{table}[t]
 \centering

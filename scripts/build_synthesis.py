@@ -14,6 +14,8 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import _palette  # noqa: E402,F401
 
 
 def load_summary(p, method_col, value_col):
@@ -95,7 +97,7 @@ def main():
             if mn in ms:
                 M[i, j] = ms[mn] / max(row_max, 1e-9)
     fig, ax = plt.subplots(figsize=(11, 0.4 * len(benchmarks) + 1.5))
-    im = ax.imshow(M, aspect="auto", cmap="RdYlGn", vmin=0, vmax=1)
+    im = ax.imshow(M, aspect="auto", cmap="blue_green_div", vmin=0, vmax=1)
     ax.set_xticks(range(len(all_methods)))
     ax.set_xticklabels(all_methods, rotation=30, ha="right", fontsize=7)
     ax.set_yticks(range(len(benchmarks)))

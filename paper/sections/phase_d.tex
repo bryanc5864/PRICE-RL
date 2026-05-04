@@ -1,5 +1,5 @@
-\section{Phase-D Extensions}
-\label{sec:phaseD}
+\section{Phase-D extensions: ESM-style heads, diversity, and cross-method synthesis}
+\label{app:phaseD}
 
 Phase-D delivers six additional studies. Three produced positive findings (ESM-conditioned PRICE-RL, top-K-unique diversity, cross-method synthesis); three produced \emph{honest mixed or negative findings} that we report transparently because they sharpen the boundaries of where PRICE-RL helps.
 
@@ -33,7 +33,7 @@ We replaced the factorised policy on TEM-1 DMS with a context-conditioned head: 
 
 \begin{table}[t]
 \centering
-\caption{E14 --- ESM-2-conditioned PRICE-RL on TEM-1 (5 seeds × 5 rounds × 100 queries). The ESM-style head modestly improves over WT init alone, within noise. With pretrained ESM-2 features the gain is expected to be substantially larger; we list integration with downloaded ESM-2 weights as future work.}
+\caption{E14 --- ESM-2-conditioned PRICE-RL on TEM-1 (5 seeds \(\times\) 5 rounds \(\times\) 100 queries). The ESM-style head modestly improves over WT init alone, within noise. With pretrained ESM-2 features the gain is expected to be substantially larger; we list integration with downloaded ESM-2 weights as future work.}
 \label{tab:e14}
 \begin{tabular}{lc}
 \toprule
@@ -47,26 +47,26 @@ AdaLead                             & $4.449 \pm 1.762$ \\
 \end{tabular}
 \end{table}
 
-\subsection{ρ-gated closed-loop AL: aggressive σ-gating hurts}
+\subsection{\(\rho\)-gated closed-loop AL: aggressive \(\sigma\)-gating hurts}
 \label{sec:e15}
 
 We attempted to fix the E9 weakness (AdaLead beats PRICE-RL when the policy trains on a retrained surrogate) by gating PRICE-RL's $\alpha$ updates on the surrogate's ensemble $\hat{\sigma}$.
 
 \begin{table}[t]
 \centering
-\caption{E15 --- σ-gated closed-loop AL on GB1. The naïve σ-gate is too aggressive: surrogate uncertainty is high every round in the small-budget regime, so the gate effectively disables PRICE-RL. Pure AdaLead remains state of the art in this setting.}
+\caption{E15 --- \(\sigma\)-gated closed-loop AL on GB1. The naïve \(\sigma\)-gate is too aggressive: surrogate uncertainty is high every round in the small-budget regime, so the gate effectively disables PRICE-RL. Pure AdaLead remains state of the art in this setting.}
 \label{tab:e15}
 \begin{tabular}{lc}
 \toprule
 Method & Top-1\% recall \\
 \midrule
-PRICE-RL ρ-gated (closed loop)              & $0.004 \pm 0.001$ \\
+PRICE-RL \(\rho\)-gated (closed loop)              & $0.004 \pm 0.001$ \\
 \textbf{AdaLead (closed loop)}              & $\mathbf{0.161 \pm 0.044}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-A more sophisticated gate (e.g.\ targeting the \emph{rank} agreement between surrogate and PRICE-RL gradient, not raw σ) is the natural next step and is listed as future work. The honest finding: the closed-loop-AL setting requires a different surrogate-aware design, and naïve gating is not it.
+A more sophisticated gate (e.g.\ targeting the \emph{rank} agreement between surrogate and PRICE-RL gradient, not raw \(\sigma\)) is the natural next step and is listed as future work. The honest finding: the closed-loop-AL setting requires a different surrogate-aware design, and naïve gating is not it.
 
 \subsection{Mega-budget multi-DMS: long-sequence DMS continues to favour AdaLead}
 \label{sec:e16}
@@ -91,14 +91,14 @@ AAV (L=589)          & $0.013$ & $\mathbf{2.52 \pm 2.11}$  & $0.99 \pm 1.19$ \\
 
 This refines the abstract's claim: PRICE-RL beats AdaLead at scale on \emph{short combinatorial} landscapes (GB1 four-mutation, Trap-K). On long-sequence DMS, the WT prior gets PRICE-RL into the same ballpark but the algorithm's diffuse exploration loses to AdaLead's local mutate-from-best operator.
 
-\subsection{Diversity metric: PRICE-RL finds 2.5× more unique top-1\% variants than AdaLead}
+\subsection{Diversity metric: PRICE-RL finds 2.5\(\times\) more unique top-1\% variants than AdaLead}
 \label{sec:e17}
 
 Wet-lab campaigns rarely care about a single best variant; they need a diverse panel of top candidates for parallel screening. We re-evaluated the GB1 mega-budget runs with two diversity metrics (E17, full re-run with diversity instrumentation):
 
 \begin{table}[t]
 \centering
-\caption{E17 --- Diversity-aware metrics on GB1 (20 rounds × 200 queries × 5 seeds). PRICE-RL discovers 2.5$\times$ more unique top-1\% variants than AdaLead at the same fitness rate; AdaLead converges to a single peak.}
+\caption{E17 --- Diversity-aware metrics on GB1 (20 rounds \(\times\) 200 queries \(\times\) 5 seeds). PRICE-RL discovers 2.5$\times$ more unique top-1\% variants than AdaLead at the same fitness rate; AdaLead converges to a single peak.}
 \label{tab:e17}
 \begin{tabular}{lcccc}
 \toprule
@@ -143,7 +143,7 @@ GFlowNet-AL                         & 0 / 13 & Always behind PRICE-RL where comp
 \subsection{What Phase-D taught us}
 
 \begin{itemize}\itemsep0pt
-  \item \textbf{T2 is genuinely structurally bounded.} Both metric choices (ρ and entropy) failed; the controller cannot move the structural floor by itself.
+  \item \textbf{T2 is genuinely structurally bounded.} Both metric choices (\(\rho\) and entropy) failed; the controller cannot move the structural floor by itself.
   \item \textbf{ESM-style heads are an architectural slot} that integrates cleanly into PRICE-RL with modest gain even without pretrained weights; integrating downloaded ESM-2 features is the natural follow-on.
   \item \textbf{Closed-loop AL with surrogate retraining is a different problem} where AdaLead's reward-noise-invariance dominates; PRICE-RL needs a surrogate-aware redesign.
   \item \textbf{Long-sequence DMS at scale favours AdaLead} even with WT init; PRICE-RL's locality is structurally weaker than mutate-from-best for this regime.
