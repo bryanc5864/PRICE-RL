@@ -100,13 +100,28 @@ def analyze_E3():
     save_fig(fig, "fig_E3_rho_vs_K")
 
     # ------ Figure: Theorem 1 cosine -----------
-    fig, ax = plt.subplots(figsize=(5, 3))
-    ax.hist(pr["cos_T1"], bins=20, color="C2", edgecolor="white")
-    ax.axvline(0.95, color="r", ls="--", label="T1 threshold = 0.95")
-    ax.set_xlabel(r"cosine($g_S+g_T$, pooled REINFORCE)")
-    ax.set_ylabel("# rounds")
-    ax.set_title(f"Theorem 1 empirical exactness — min = {pr['cos_T1'].min():.4f}")
-    ax.legend()
+    # Every per-round cosine equals 1.0000 to floating-point precision, so a
+    # default histogram collapses to an invisible spike at the right edge.
+    # Plot an explicit (1 - cos) deviation in log-scale so the reader can see
+    # how tight the identity actually is.
+    fig, ax = plt.subplots(figsize=(5.6, 3.2))
+    cos_vals = pr["cos_T1"].values
+    deviation = np.clip(1.0 - cos_vals, 1e-17, None)
+    n_rounds = len(deviation)
+    bins = np.logspace(-17, -1, 33)
+    ax.hist(deviation, bins=bins, color="#2ca02c", edgecolor="white")
+    ax.axvline(1 - 0.95, color="#1f77b4", ls="--",
+               label=r"T1 threshold (cos $\geq$ 0.95)")
+    ax.set_xscale("log")
+    ax.set_xlim(1e-17, 1e-1)
+    ax.set_xlabel(r"$1 - \mathrm{cos}(g_S+g_T,\ \mathrm{pooled\ REINFORCE})$")
+    ax.set_ylabel(f"# rounds (out of {n_rounds})")
+    ax.set_title(
+        rf"Theorem 1 empirical exactness — "
+        rf"min cos = {cos_vals.min():.6f}, max deviation = {deviation.max():.1e}"
+    )
+    ax.legend(loc="upper right")
+    ax.grid(axis="y", alpha=0.25)
     save_fig(fig, "fig_T1_cosine_histogram")
 
     return {"T1_cos_min": float(cos_min), "T3_pearson": float(r),

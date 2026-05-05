@@ -1,4 +1,4 @@
-\begin{thebibliography}{34}
+\begin{thebibliography}{35}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -114,6 +114,11 @@ Moksh Jain, Emmanuel Bengio, Alex Hernandez-Garcia, Jarrid Rector-Brooks,
 \newblock Biological sequence design with {GFlowNets}.
 \newblock In \emph{Proceedings of the 39th International Conference on Machine
   Learning ({ICML})}, pages 9786--9801, 2022.
+
+\bibitem[Karimi and Mei(2022)]{karimi2022two}
+Belhal Karimi and Song Mei.
+\newblock On the convergence of two-timescale stochastic approximation.
+\newblock \emph{arXiv preprint arXiv:2203.01880}, 2022.
 
 \bibitem[Kauffman and Weinberger(1989)]{kauffman1989nk}
 Stuart~A. Kauffman and Edward~D. Weinberger.

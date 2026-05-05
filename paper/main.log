@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.1)  3 MAY 2026 20:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.1)  4 MAY 2026 23:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -617,7 +617,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 37
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 38
 .
 
 (C:\Users\zhaoz\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1phv.fd
@@ -633,11 +633,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 {C:/Users/zhaoz/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/zhao
 z/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]) (sections/relate
-d_work.tex
-Underfull \vbox (badness 1642) has occurred while \output is active []
-
- [2])
-(sections/methods.tex
+d_work.tex [2]) (sections/methods.tex [3]
 Underfull \hbox (badness 1558) in paragraph at lines 6--7
  []\T1/ptm/b/n/10 (+20) The de-com-posed pol-icy gra-di-ent.[] \T1/ptm/m/n/10 (
 +20) Let $\OML/cmm/m/it/10 ^^Y[]$ \T1/ptm/m/n/10 (+20) be a fac-torised cat-e-g
@@ -651,97 +647,100 @@ Underfull \hbox (badness 10000) in paragraph at lines 10--12
 lised im-por-tance weight
  []
 
-[3]) (sections/experiments.tex) (sections/results.tex
-Underfull \vbox (badness 1112) has occurred while \output is active []
-
- [4]
-<../figures/fig_T1_cosine_histogram.pdf, id=374, 353.8018pt x 206.2474pt>
+[4]) (sections/experiments.tex [5]) (sections/results.tex [6]
+<../figures/fig_T1_cosine_histogram.pdf, id=410, 504.33104pt x 219.36856pt>
 File: ../figures/fig_T1_cosine_histogram.pdf Graphic file (type pdf)
 <use ../figures/fig_T1_cosine_histogram.pdf>
 Package pdftex.def Info: ../figures/fig_T1_cosine_histogram.pdf  used on input 
 line 10.
-(pdftex.def)             Requested size: 238.49341pt x 139.02844pt.
-<../figures/fig_E3_best_vs_K.pdf, id=380, 426.1998pt x 251.98453pt>
+(pdftex.def)             Requested size: 238.49341pt x 103.73587pt.
+<../figures/fig_E3_best_vs_K.pdf, id=416, 426.1998pt x 251.98453pt>
 File: ../figures/fig_E3_best_vs_K.pdf Graphic file (type pdf)
 <use ../figures/fig_E3_best_vs_K.pdf>
 Package pdftex.def Info: ../figures/fig_E3_best_vs_K.pdf  used on input line 20
 .
 (pdftex.def)             Requested size: 194.76982pt x 115.15681pt.
-<../figures/fig_E3_rho_vs_K.pdf, id=381, 424.58249pt x 251.46384pt>
+<../figures/fig_E3_rho_vs_K.pdf, id=417, 424.58249pt x 251.46384pt>
 File: ../figures/fig_E3_rho_vs_K.pdf Graphic file (type pdf)
 <use ../figures/fig_E3_rho_vs_K.pdf>
 Package pdftex.def Info: ../figures/fig_E3_rho_vs_K.pdf  used on input line 25.
 
 (pdftex.def)             Requested size: 194.76982pt x 115.35245pt.
-
-[5 <../figures/fig_T1_cosine_histogram.pdf>]
-<../figures/fig_E1_gb1_bars.pdf, id=457, 570.68015pt x 216.30754pt>
+ [7 <../figures/fig_T1_cosine_histogram.pdf> <../figures/fig_E3_best_vs_K.pdf> 
+<../figures/fig_E3_rho_vs_K.pdf>]
+<../figures/fig_E1_gb1_bars.pdf, id=642, 570.68015pt x 216.30754pt>
 File: ../figures/fig_E1_gb1_bars.pdf Graphic file (type pdf)
 <use ../figures/fig_E1_gb1_bars.pdf>
 Package pdftex.def Info: ../figures/fig_E1_gb1_bars.pdf  used on input line 55.
 
 (pdftex.def)             Requested size: 365.68546pt x 138.61128pt.
-<../figures/fig_E2_rho_vs_uncertainty.pdf, id=459, 498.55133pt x 244.66281pt>
+ [8 <../figures/fig_E1_gb1_bars.pdf>]
+<../figures/fig_E2_rho_vs_uncertainty.pdf, id=699, 498.55133pt x 244.66281pt>
 File: ../figures/fig_E2_rho_vs_uncertainty.pdf Graphic file (type pdf)
 <use ../figures/fig_E2_rho_vs_uncertainty.pdf>
 Package pdftex.def Info: ../figures/fig_E2_rho_vs_uncertainty.pdf  used on inpu
 t line 65.
 (pdftex.def)             Requested size: 218.61795pt x 107.2861pt.
-<../figures/fig_E2_reward_gap.pdf, id=460, 426.28134pt x 208.5278pt>
+<../figures/fig_E2_reward_gap.pdf, id=700, 426.28134pt x 208.5278pt>
 File: ../figures/fig_E2_reward_gap.pdf Graphic file (type pdf)
 <use ../figures/fig_E2_reward_gap.pdf>
 Package pdftex.def Info: ../figures/fig_E2_reward_gap.pdf  used on input line 7
 0.
 (pdftex.def)             Requested size: 166.94296pt x 81.66597pt.
- [6 <../figures/fig_E3_best_vs_K.pdf> <../figures/fig_E3_rho_vs_K.pdf>]
-<../figures/fig_E5_trap5.pdf, id=613, 498.74768pt x 223.0519pt>
+<../figures/fig_E5_trap5.pdf, id=709, 498.74768pt x 223.0519pt>
 File: ../figures/fig_E5_trap5.pdf Graphic file (type pdf)
 <use ../figures/fig_E5_trap5.pdf>
 Package pdftex.def Info: ../figures/fig_E5_trap5.pdf  used on input line 99.
 (pdftex.def)             Requested size: 238.49341pt x 106.66208pt.
- [7 <../figures/fig_E1_gb1_bars.pdf> <../figures/fig_E2_rho_vs_uncertainty.pdf>
- <../figures/fig_E2_reward_gap.pdf>]
+
+Underfull \vbox (badness 1325) has occurred while \output is active []
+
+ [9 <../figures/fig_E2_rho_vs_uncertainty.pdf> <../figures/fig_E2_reward_gap.pd
+f>]
 Overfull \hbox (32.40454pt too wide) in paragraph at lines 146--158
  [][] 
  []
 
 ) (sections/large_scale.tex
-<../figures/fig_E3L_best_vs_K_boot.pdf, id=782, 498.46979pt x 251.98453pt>
+Underfull \vbox (badness 3503) has occurred while \output is active []
+
+ [10 <../figures/fig_E5_trap5.pdf>]
+<../figures/fig_E3L_best_vs_K_boot.pdf, id=897, 498.46979pt x 251.98453pt>
 File: ../figures/fig_E3L_best_vs_K_boot.pdf Graphic file (type pdf)
 <use ../figures/fig_E3L_best_vs_K_boot.pdf>
 Package pdftex.def Info: ../figures/fig_E3L_best_vs_K_boot.pdf  used on input l
 ine 10.
 (pdftex.def)             Requested size: 310.0378pt x 156.73631pt.
-<../figures/fig_E3L_rho_traj_grid.pdf, id=784, 1087.66348pt x 370.42703pt>
+<../figures/fig_E3L_rho_traj_grid.pdf, id=899, 1087.66348pt x 370.42703pt>
 File: ../figures/fig_E3L_rho_traj_grid.pdf Graphic file (type pdf)
 <use ../figures/fig_E3L_rho_traj_grid.pdf>
 Package pdftex.def Info: ../figures/fig_E3L_rho_traj_grid.pdf  used on input li
 ne 19.
 (pdftex.def)             Requested size: 397.48499pt x 135.37148pt.
- [8 <../figures/fig_E5_trap5.pdf>]
-<../figures/fig_E1L_trajectory.pdf, id=853, 498.52937pt x 244.66281pt>
+ [11]
+<../figures/fig_E1L_trajectory.pdf, id=914, 498.52937pt x 244.66281pt>
 File: ../figures/fig_E1L_trajectory.pdf Graphic file (type pdf)
 <use ../figures/fig_E1L_trajectory.pdf>
 Package pdftex.def Info: ../figures/fig_E1L_trajectory.pdf  used on input line 
 28.
 (pdftex.def)             Requested size: 310.0378pt x 152.16348pt.
-<../figures/fig_E2L_long_trajectory.pdf, id=856, 570.81848pt x 244.66281pt>
+<../figures/fig_E2L_long_trajectory.pdf, id=917, 570.81848pt x 244.66281pt>
 File: ../figures/fig_E2L_long_trajectory.pdf Graphic file (type pdf)
 <use ../figures/fig_E2L_long_trajectory.pdf>
 Package pdftex.def Info: ../figures/fig_E2L_long_trajectory.pdf  used on input 
 line 55.
 (pdftex.def)             Requested size: 337.86465pt x 144.81271pt.
-<../figures/fig_E5L_trap_scaling.pdf, id=857, 570.68015pt x 246.11021pt>
+<../figures/fig_E5L_trap_scaling.pdf, id=918, 570.68015pt x 246.11021pt>
 File: ../figures/fig_E5L_trap_scaling.pdf Graphic file (type pdf)
 <use ../figures/fig_E5L_trap_scaling.pdf>
 Package pdftex.def Info: ../figures/fig_E5L_trap_scaling.pdf  used on input lin
 e 62.
 (pdftex.def)             Requested size: 337.86465pt x 145.71072pt.
- [9])
-(sections/discussion.tex [10 <../figures/fig_E3L_best_vs_K_boot.pdf>] [11 <../f
-igures/fig_E3L_rho_traj_grid.pdf> <../figures/fig_E1L_trajectory.pdf>])
-(main.bbl [12 <../figures/fig_E2L_long_trajectory.pdf>] [13 <../figures/fig_E5L
-_trap_scaling.pdf>] [14]) (sections/appendix.tex
+ [12 <../figures/fig_E3L_best_vs_K_boot.pdf> <../figures/fig_E3L_rho_traj_grid.
+pdf>] [13 <../figures/fig_E1L_trajectory.pdf>])
+(sections/discussion.tex [14 <../figures/fig_E2L_long_trajectory.pdf> <../figur
+es/fig_E5L_trap_scaling.pdf>]) [15] (main.bbl [16] [17]) (sections/appendix.tex
+
 Overfull \hbox (42.07805pt too wide) detected at line 25
 []  \OML/cmm/m/it/10 ^^Y[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) 
 (\OML/cmm/m/it/10 R\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) \OMS/cm
@@ -757,7 +756,7 @@ it/10 R\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^
 ^^Y[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 :
  []
 
-[15]
+[18]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 42.
@@ -789,12 +788,12 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[16] (sections/phase_b.tex
+[19] (sections/phase_b.tex
 Overfull \hbox (84.57642pt too wide) in paragraph at lines 15--23
  [][] 
  []
 
-[17]
+[20]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 52.
@@ -807,15 +806,15 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 52.
 
-<../figures/fig_all_benchmarks_scatter.pdf, id=1188, 1073.93494pt x 252.38382pt
+<../figures/fig_all_benchmarks_scatter.pdf, id=1248, 1073.93494pt x 252.38382pt
 >
 File: ../figures/fig_all_benchmarks_scatter.pdf Graphic file (type pdf)
 <use ../figures/fig_all_benchmarks_scatter.pdf>
 Package pdftex.def Info: ../figures/fig_all_benchmarks_scatter.pdf  used on inp
 ut line 121.
 (pdftex.def)             Requested size: 397.48499pt x 93.41135pt.
-) (sections/phase_c.tex [18] [19]
-<../figures/fig_E10_perpos_entropy.pdf, id=1208, 348.34401pt x 222.9818pt>
+) (sections/phase_c.tex [21] [22]
+<../figures/fig_E10_perpos_entropy.pdf, id=1267, 348.34401pt x 222.9818pt>
 File: ../figures/fig_E10_perpos_entropy.pdf Graphic file (type pdf)
 <use ../figures/fig_E10_perpos_entropy.pdf>
 Package pdftex.def Info: ../figures/fig_E10_perpos_entropy.pdf  used on input l
@@ -834,7 +833,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 131.
 
-) (sections/phase_d.tex [20 <../figures/fig_all_benchmarks_scatter.pdf>]
+) (sections/phase_d.tex [23 <../figures/fig_all_benchmarks_scatter.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 50.
@@ -854,7 +853,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 Underfull \vbox (badness 1348) has occurred while \output is active []
 
- [21]
+ [24]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 94.
@@ -863,7 +862,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\times' on input line 94.
 
-<../figures/fig_synthesis_heatmap.pdf, id=1289, 736.61699pt x 418.69662pt>
+<../figures/fig_synthesis_heatmap.pdf, id=1348, 736.61699pt x 418.69662pt>
 File: ../figures/fig_synthesis_heatmap.pdf Graphic file (type pdf)
 <use ../figures/fig_synthesis_heatmap.pdf>
 Package pdftex.def Info: ../figures/fig_synthesis_heatmap.pdf  used on input li
@@ -879,7 +878,7 @@ LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
 (C:\Users\zhaoz\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ))
-(sections/phase_e.tex [22]
+(sections/phase_e.tex [25]
 Underfull \hbox (badness 2277) in paragraph at lines 9--10
 \T1/ptm/m/n/10 (+20) We aug-ment PRICE-RL with a per-candidate Hamming-distance
  ker-nel $\OML/cmm/m/it/10 w[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/1
@@ -889,7 +888,7 @@ Underfull \hbox (badness 2277) in paragraph at lines 9--10
 
 Underfull \vbox (badness 1888) has occurred while \output is active []
 
- [23 <../figures/fig_E10_perpos_entropy.pdf>])) [24] [25] [26 <../figures/fig_s
+ [26 <../figures/fig_E10_perpos_entropy.pdf>])) [27] [28] [29 <../figures/fig_s
 ynthesis_heatmap.pdf>] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
@@ -900,16 +899,16 @@ L3 programming layer <2025-12-24>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 886014DBAA0EFE33B4F9C85BDB32D66F;11073.
+(rerunfilecheck)             Checksum: 53E79F5788006B1FDA075EEAE6A65E36;11073.
  ) 
 Here is how much of TeX's memory you used:
- 16357 strings out of 467871
- 263538 string characters out of 5418377
- 732082 words of memory out of 5000000
- 44467 multiletter control sequences out of 15000+600000
- 684602 words of font info for 302 fonts, out of 8000000 for 9000
+ 16346 strings out of 467871
+ 263469 string characters out of 5418377
+ 732120 words of memory out of 5000000
+ 44470 multiletter control sequences out of 15000+600000
+ 683350 words of font info for 290 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,15n,79p,2650b,697s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,15n,79p,2092b,697s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\zhaoz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt
 1000.pk><C:/Users/zhaoz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmbx10.pfb><C:/Users/zhaoz/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -936,9 +935,9 @@ fb><C:/Users/zhaoz/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.
 pfb><C:/Users/zhaoz/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.
 pfb><C:/Users/zhaoz/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a
 .pfb>
-Output written on main.pdf (26 pages, 817110 bytes).
+Output written on main.pdf (29 pages, 850957 bytes).
 PDF statistics:
- 1641 PDF objects out of 1728 (max. 8388607)
- 184 named destinations out of 1000 (max. 500000)
+ 1701 PDF objects out of 1728 (max. 8388607)
+ 188 named destinations out of 1000 (max. 500000)
  55196 words of extra memory for PDF output out of 61914 (max. 10000000)
 
