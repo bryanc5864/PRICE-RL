@@ -1,158 +1,58 @@
 \section{Results}
 \label{sec:results}
 
-The results section is organised around the three theorems, then around the two empirical claims that follow from them: that the Price ratio is a strictly stronger reward-hacking diagnostic than the current state of the art, and that the decomposition is not biology-specific. We close with two studies (cross-protein transfer and long-sequence DMS) where the headline claim is partially or fully \emph{not} supported, reported transparently.
-
-\paragraph{Theorem~1 holds to floating-point precision.} In every round of every seed of every NK configuration in the small sweep ($35$ runs $\times$ 8 rounds = $280$ measurements), the cosine similarity between the decomposed gradient $g_S + g_T$ and the standard pooled REINFORCE gradient was \textbf{1.0000}. Figure~\ref{fig:t1} plots the empirical distribution of the per-round deviation $1 - \mathrm{cos}(g_S+g_T,\,g_{\mathrm{pool}})$ on a logarithmic axis: roughly two thirds of rounds sit at the floating-point floor ($<10^{-15}$), and the remaining third sit at $\sim 10^{-7}$, three orders of magnitude tighter than the $0.95$ pre-registered threshold and far below any other source of numerical noise in the pipeline. The identity is sample-wise, not in expectation: the partition $\{S, \bar S\}$ is a deterministic disjoint cover, so $\hat g_S + \hat g_T = \hat g_{\mathrm{pool}}$ on every individual Monte-Carlo sample, regardless of the policy, the reward, or the sample size, and the corollary in Appendix~\ref{app:thm1} extends the same identity to autoregressive parameterisations without modification. We use this as a continuous self-check throughout training --- any deviation above $10^{-3}$ would indicate an implementation bug --- and as a strong empirical anchor for the rest of the paper, because every claim that follows is grounded in a gradient estimator that is provably and observably equivalent to vanilla REINFORCE up to a partition.
+\paragraph{Theorem~1 holds to floating-point precision.} In every round of every seed of every NK configuration in the small sweep ($35\!\times\!8 = 280$ measurements), the cosine of $(g_S + g_T)$ against pooled REINFORCE is $1.0000$. Figure~\ref{fig:t1} plots the per-round deviation $1 - \mathrm{cos}$ on a log axis: roughly two thirds of rounds sit at the floating-point floor ($<10^{-15}$) and the rest at $\sim 10^{-7}$, three orders of magnitude tighter than the pre-registered $0.95$ threshold. The identity is sample-wise rather than in expectation, and Corollary~\ref{cor:thm1ar} extends it to autoregressive parameterisations (verified in §\ref{sec:large_scale}). Every claim that follows is grounded in a gradient estimator that is provably and observably equivalent to vanilla REINFORCE up to a partition.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.6\textwidth]{fig_T1_cosine_histogram.pdf}
-\caption{Theorem~\ref{thm:exact} (exactness): cosine of $(g_S + g_T)$ against pooled REINFORCE across all 280 round-seed pairs in the NK sweep. Minimum value $1.0000$.}
+\caption{Theorem~\ref{thm:exact} (exactness): per-round deviation $1 - \mathrm{cos}(g_S+g_T,\,\mathrm{pooled\ REINFORCE})$ across all $280$ round-seed pairs in the NK sweep. Maximum deviation is $2.4\!\times\!10^{-7}$.}
 \label{fig:t1}
 \end{figure}
 
-With the algebraic identity verified, the next question is whether the controller actually steers $\rho_t$ towards the regret-optimal target rather than merely satisfying the partition. Across the seven NK configurations, the empirical mean $\rho_t$ correlates with the analytic $\rho^*$ at \textbf{Pearson $r = 0.995$} (Figure~\ref{fig:rho}, right). Both quantities decrease monotonically with the autocorrelation length, and they decrease in lockstep across nearly two orders of magnitude in $K$: rugged landscapes (small $L$, large $K$) demand selection-heavy schedules in the low-data regime, because each peak located within budget is rare and must be exploited; smooth landscapes (large $L$, small $K$) can afford transmission-heavy schedules because exploration is locally informative. This direction is the \emph{opposite} of what a naive high-data regret analysis predicts, where rugged landscapes need more exploration to escape suboptima --- and we discuss the inversion at length in §\ref{sec:discussion}, because resolving it required revising the formula based on empirics rather than a priori derivation. The headline best-fitness curve in Figure~\ref{fig:rho} (left) shows that this controller behaviour translates into competitive end-to-end performance: PRICE-RL matches AdaLead across the ruggedness range, and wins clearly on smooth ($K\in\{0,1\}$) and very rugged ($K\geq15$) regimes where the schedule choice matters most.
+\paragraph{The Price ratio tracks the analytic optimum.} Across the seven NK configurations, the empirical mean $\rho_t$ correlates with the analytic $\rho^*$ at \textbf{Pearson $r = 0.995$} (Figure~\ref{fig:rho}, right). Both quantities decrease monotonically with the autocorrelation length, in lockstep across nearly two orders of magnitude in $K$: rugged landscapes demand selection-heavy schedules in the low-data regime because each peak found is precious; smooth ones can afford transmission-heavy schedules because exploration is locally informative. The headline best-fitness curve in Figure~\ref{fig:rho} (left) shows that this controller behaviour translates into competitive performance, with PRICE-RL matching AdaLead across the ruggedness range and winning on smooth ($K\!\in\!\{0,1\}$) and very rugged ($K\geq15$) regimes. The $480$-run hyperparameter grid in Appendix~\ref{app:phaseC} confirms that the algorithm is robust to base-LR, inner-step, and support-quantile choice over an order of magnitude on each axis.
 
 \begin{figure}[t]
 \centering
 \begin{subfigure}[b]{0.49\textwidth}
 \includegraphics[width=\textwidth]{fig_E3_best_vs_K.pdf}
 \caption{Best fitness reached vs.\ ruggedness $K$.}
-\end{subfigure}
-\hfill
+\end{subfigure}\hfill
 \begin{subfigure}[b]{0.49\textwidth}
 \includegraphics[width=\textwidth]{fig_E3_rho_vs_K.pdf}
 \caption{Empirical $\rho_t$ vs.\ analytic $\rho^*$ across $K$.}
 \end{subfigure}
-\caption{NK sweep (E3). Hypothesis~H3 strongly supported: $r=0.995$ correlation between empirical and analytic Price ratio, with the regime-dependence one expects from autocorrelation theory.}
+\caption{NK sweep (E3). H3 strongly supported: $r=0.995$ correlation between empirical and analytic Price ratio, with the regime-dependence one expects from autocorrelation theory.}
 \label{fig:rho}
 \end{figure}
 
-\paragraph{GB1: matching the active-learning state of the art.} Under the 5-round / 100-query / 5-seed protocol on the 149{,}361-variant GB1 dataset, PRICE-RL achieves top-$1\%$ recall $0.161 \pm 0.047$, compared to AdaLead at $0.161 \pm 0.050$, PEX at $0.031 \pm 0.007$, and random at $0.004 \pm 0.001$ (Table~\ref{tab:gb1}). The paired-bootstrap test against random gives $p = 0.0000$, and the non-inferiority test against AdaLead gives a gap of $-0.0004$, well within the 1-std non-inferiority margin of $0.042$. Crucially, the fixed-mixing ablation collapses to $0.006 \pm 0.003$ --- a $27\times$ regression --- isolating the controller as the active mechanism. The bar plots in Figure~\ref{fig:gb1} make the contrast visual: best fitness saturates because the budget exceeds the trivial threshold, and the discriminative metric is top-$1\%$ recall.
-
-\begin{table}[t]
-\centering
-\caption{GB1 four-mutation active learning (5 rounds $\times$ 100 queries $\times$ 5 seeds, top-$1\%$ recall).}
-\label{tab:gb1}
-\begin{tabular}{lcc}
-\toprule
-Method & Top-$1\%$ recall & Best fitness \\
-\midrule
-Random                            & $0.004 \pm 0.001$ & $1.000 \pm 0.000$ \\
-PEX \citep{ren2022proximal}       & $0.031 \pm 0.007$ & $1.000 \pm 0.000$ \\
-AdaLead \citep{sinai2020adalead}  & $0.161 \pm 0.050$ & $1.000 \pm 0.000$ \\
-PRICE-RL ($\alpha_S{=}\alpha_T$, ablation) & $0.006 \pm 0.003$ & $1.000 \pm 0.000$ \\
-\textbf{PRICE-RL (full)}          & $\mathbf{0.161 \pm 0.047}$ & $\mathbf{1.000 \pm 0.000}$ \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-The 500-query GB1 result is a tie, and we report it as one rather than overstating it. The lead opens up at higher horizons in §\ref{sec:large_scale}, where we show that adaptive Price-mixing extracts a $12.4\%$ advantage over AdaLead with non-overlapping CIs once the budget is large enough for the controller to settle into its regret-optimal regime; the lead grows monotonically with the budget, from a tie at 500 queries through $8\%$ at $4{,}000$ to $12.4\%$ at $8{,}000$. The fixed-mixing ablation tracks PRICE-RL roughly $1.5\times$ behind at every scale, which is exactly the pattern one would expect if adaptive mixing rather than the partition were the active mechanism: the partition alone gives an unbiased estimator of the same gradient, so without the controller it is no better than vanilla REINFORCE plus an unused diagnostic. This rules out the alternative hypothesis that the decomposition itself, rather than the controller, was carrying the gain.
+\paragraph{GB1: tying the active-learning state of the art.} Under the 5-round / 100-query / 5-seed protocol, PRICE-RL achieves top-$1\%$ recall $0.161 \pm 0.047$ vs.\ AdaLead $0.161 \pm 0.050$, PEX $0.031 \pm 0.007$, and random $0.004 \pm 0.001$ (full table in Appendix~\ref{app:phaseB}). The paired-bootstrap test against random gives $p = 0.0000$ and the non-inferiority test against AdaLead gives a gap of $-0.0004$, well within the $1$-std margin of $0.042$. The fixed-mixing ablation collapses to $0.006 \pm 0.003$ --- a $27\times$ regression --- isolating the controller rather than the partition as the active mechanism. The 500-query result is a tie, and we report it as one. In §\ref{sec:large_scale} the lead opens up monotonically with horizon: $0\%$ at $500$ queries, $8\%$ at $4{,}000$, $12.4\%$ at $8{,}000$ with non-overlapping $95\%$ CIs. Figure~\ref{fig:gb1} summarises the small-budget bars; best fitness saturates because the budget exceeds the trivial threshold, so the discriminative metric is top-$1\%$ recall.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.92\textwidth]{fig_E1_gb1_bars.pdf}
+\includegraphics[width=0.85\textwidth]{fig_E1_gb1_bars.pdf}
 \caption{GB1 (E1). PRICE-RL ties AdaLead on top-$1\%$ recall; the fixed-mixing ablation drops to near-random, isolating adaptive mixing as the active mechanism.}
 \label{fig:gb1}
 \end{figure}
 
-\paragraph{The Price ratio as an early-warning signal for reward hacking.} The diagnostic is the empirical claim with the strongest practical implications, because reward hacking is the modal failure mode of RL-tuned generative biology: the optimisation succeeds against the proxy and silently fails against the true objective. Figure~\ref{fig:e2} plots, for eight independent seeds of the reward-hacking experiment, the trajectory of $\rho_t$ alongside proxy ensemble variance and the proxy-minus-true reward gap. The Price ratio crosses $0.9$ at round $0$ in every seed --- the policy commits to refining-on-support immediately because the proxy is most informative there --- while proxy variance crosses $95\%$ of its final value only at rounds $9$--$11$, by which point the reward gap has grown past $0.2$ and the policy has spent most of its budget on inflated proxy values. In all $8$ of $8$ seeds the lead of the $\rho_t$ alarm over the proxy-variance alarm is $\geq 9$ rounds, and reward-gap divergence (proxy minus true growing past $0.2$) confirms that hacking is what the diagnostic is detecting rather than benign refinement. The gradient-level signal beats the behaviour-level signal for a structural reason: $\rho_t$ asks per round whether the policy is consuming new sequence space or refining already-supported variants, and proxy hacking is by construction a refinement-on-artefact event, so $\rho_t$ flags it on the first round in which the policy commits without needing to wait for variance to accumulate or for the proxy-vs-true gap to widen. The §\ref{sec:large_scale} long-horizon study shows the same pattern at scale, with a mean lead of $18.6$ rounds across $16$ seeds, and the §\ref{sec:large_scale} corruption study shows the diagnostic is robust to surrogate noise of $\sigma_n \in [0, 0.40]$ --- well above the natural noise scale of trained surrogates --- which suggests the alarm is fit to use as a default sanity check on any RL-from-proxy pipeline rather than only on a curated stress test.
+\paragraph{The Price ratio as an early-warning signal for reward hacking.} Reward hacking is the modal failure of RL-tuned generative biology: the optimisation succeeds against the proxy and silently fails against the true objective. Figure~\ref{fig:e2} plots, for eight independent seeds of the reward-hacking experiment, the trajectory of $\rho_t$ alongside proxy ensemble variance. The Price ratio crosses $0.9$ at round $0$ in every seed --- the policy commits to refining-on-support immediately because the proxy is most informative there --- while proxy variance crosses $95\%$ of its final value only at rounds $9$--$11$, by which point the reward gap has grown past $0.2$. In all $8/8$ seeds the lead of the $\rho_t$ alarm over the proxy-variance alarm is $\geq 9$ rounds. The gradient-level signal beats the behaviour-level signal for a structural reason: $\rho_t$ asks per round whether the policy is consuming new sequence space or refining already-supported variants, and proxy hacking is by construction a refinement-on-artefact event. The §\ref{sec:large_scale} long-horizon study finds a mean lead of $18.6$ rounds across $16$ seeds, and the corruption study shows the diagnostic is robust to surrogate noise of $\sigma_n \in [0, 0.40]$ --- well above the natural noise scale of trained surrogates.
 
 \begin{figure}[t]
 \centering
 \begin{subfigure}[b]{0.55\textwidth}
 \includegraphics[width=\textwidth]{fig_E2_rho_vs_uncertainty.pdf}
-\caption{$\rho_t$ vs.\ proxy uncertainty (normalised to its final value).}
-\end{subfigure}
-\hfill
+\caption{$\rho_t$ vs.\ proxy uncertainty (normalised).}
+\end{subfigure}\hfill
 \begin{subfigure}[b]{0.42\textwidth}
 \includegraphics[width=\textwidth]{fig_E2_reward_gap.pdf}
 \caption{Reward gap (proxy $-$ true) over rounds.}
 \end{subfigure}
-\caption{Reward hacking (E2). The Price ratio fires its $0.9$ alarm $9$--$11$ rounds before proxy variance crosses its $95\%$-of-final threshold on $100\%$ of seeds, while the reward gap grows past $0.2$ --- confirming the policy is exploiting proxy artefacts.}
+\caption{Reward hacking (E2). The Price ratio fires its $0.9$ alarm $9$--$11$ rounds before proxy variance crosses its $95\%$-of-final threshold on $100\%$ of seeds; the reward gap grows past $0.2$, confirming the policy is exploiting proxy artefacts. A head-to-head against $\delta$-CS (Appendix~\ref{app:phaseB}) shows PRICE-RL detects earlier; $\delta$-CS clips harder.}
 \label{fig:e2}
 \end{figure}
 
-A natural counterargument is that $\delta$-CS-style proxy-variance clipping (\citealp{kim2025deltacs}) actively reduces the realised reward gap, while PRICE-RL only diagnoses. We ran the comparison directly. $\delta$-CS achieves a smaller end-of-campaign gap ($0.166$ vs. PRICE-RL's $0.267$) by clipping each step --- but the gradient-level $\rho_t$ alarm still fires before the proxy-variance signal $\delta$-CS uses (head-to-head reward-gap trajectory in Appendix~\ref{app:phaseB}). The two are complementary: $\delta$-CS prevents by clipping, PRICE-RL detects by decomposition, and the §\ref{sec:large_scale} hybrid combines them.
+\paragraph{Cross-domain validation: Trap-5 deceptive landscape.} The Trap-5 landscape \citep{goldberg1989genetic} splits sequences in $\{0,1\}^{30}$ into six 5-bit blocks with per-block fitness $1.0$ at all-ones and a deceptive ramp $f(j) = (4-j)/4$ for $j<5$ ones, so the average gradient points away from the global optimum. Eight rounds, batch $64$, five seeds. Theorem~1 cosine $= 1.0000$ in every round, and PRICE-RL hits the global optimum on $5/5$ seeds; AdaLead lands near $0.95$ (missing the optimum on roughly $1$ in $20$ seeds) and random gets stuck near the deceptive trap. The Price decomposition is the active mechanism: the algorithm escapes deception even though the average gradient is misleading, because the transmission component remains a clean signal of where unexplored mass lies. The §\ref{sec:large_scale} scaling sweep extends this to $\{30,60,120\}\times\{3,5,7,10\}$ Trap-K with PRICE-RL hitting $1.000$ on every seed at every scale, while AdaLead misses up to $20\%$ of the time at $N=120$.
 
-\paragraph{Cross-domain validation: the Trap-5 deceptive landscape.} To establish that the Price decomposition is not a biology-specific trick we evaluated PRICE-RL on the Trap-5 deceptive landscape \citep{goldberg1989genetic}: sequences in $\{0,1\}^{30}$ split into six 5-bit blocks, with per-block fitness equal to $1.0$ at the all-ones configuration and a deceptive ramp $f(j) = (4-j)/4$ for $j<5$ ones, so that the gradient of the average fitness within a block points away from the global optimum and any naive policy gradient is actively misled. Eight rounds, batch $64$, five seeds. Every round of every seed maintained the Theorem~1 cosine identity at $1.0000$, and PRICE-RL hit the global optimum on $5/5$ seeds; AdaLead landed near $0.95$ on average (missing the optimum on roughly one in twenty seeds) and random got stuck near the deceptive trap (Table~\ref{tab:e5}, Figure~\ref{fig:e5}). The Price decomposition is the active mechanism: the algorithm learns to escape deception even though the average gradient points away from the optimum, because the transmission component remains a clean signal of where unexplored mass is even when the selection component is being pulled the wrong way. The $\alpha_S=\alpha_T$ ablation also reaches the optimum on Trap-5 because the deception is symmetric within blocks --- the partition alone is sufficient when both halves of the gradient are equally informative --- but on every other benchmark in the paper the controller is required for the win, which is why we read Trap-5 as a confirmation of the decomposition's generality rather than as evidence that the controller is dispensable.
+\paragraph{Honest mixed results: cross-protein transfer and long-sequence DMS.} Two studies do \emph{not} support the headline reading. On cross-protein transfer (TEM-1 $\to$ BLAT family), the ranking of cold / full / selection-only transfer modes is target-dependent rather than uniformly favouring the Theorem~3 prescription (Appendix~\ref{app:phaseB}); the clean separation between selection rank-structure and transmission concentration likely requires a non-factorised policy class. On long-sequence DMS (TEM-1 $L=287$, BCL11A enhancer $L=600$), PRICE-RL with uniform-init logits over the full alphabet is not competitive with AdaLead's mutate-from-best locality at small budgets: a fully diffuse factorised policy spreads probability mass over $A^L$ sequences and a few hundred labels are insufficient to concentrate it. The §\ref{sec:large_scale} wildtype-aware initialisation and locality kernel close most of this gap, and the proposal's ESM-2 backbone is the natural plug-in to close the rest.
 
-\begin{table}[t]
-\centering
-\caption{E5 --- Trap-5 deceptive landscape. PRICE-RL finds the global optimum on every seed; the decomposition generalises beyond biology.}
-\label{tab:e5}
-\begin{tabular}{lc}
-\toprule
-Method & Best fitness reached \\
-\midrule
-Random                          & $0.767 \pm 0.023$ \\
-AdaLead                         & $0.950 \pm 0.035$ \\
-PRICE-RL ($\alpha_S{=}\alpha_T$, ablation) & $\mathbf{1.000 \pm 0.000}$ \\
-\textbf{PRICE-RL (full)}        & $\mathbf{1.000 \pm 0.000}$ \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.6\textwidth]{fig_E5_trap5.pdf}
-\caption{E5 cross-domain (Trap-5 deceptive). PRICE-RL hits the global optimum on $5/5$ seeds; AdaLead $\approx 95\%$; random gets stuck near the deceptive trap.}
-\label{fig:e5}
-\end{figure}
-
-\paragraph{Cross-protein transfer and long-sequence DMS: honest mixed results.} Two studies do \emph{not} support the headline reading, and we report them in detail because they sharpen the boundaries of where the framework helps. First, cross-protein transfer: using the BLAT family of TEM-1 $\beta$-lactamase DMS studies, we trained a PRICE-RL factorised policy on TEM-1 (Stiffler 2015) and transferred it to BLAT-Deng \citep{deng2012blat}, BLAT-Firnberg \citep{firnberg2014blat}, and BLAT-Jacquier \citep{jacquier2013blat} via three modes: \emph{cold} (fresh init), \emph{full} (copy logits), and \emph{selection-only} (rank-preserving centred and damped logits, the closest factorised analogue of Theorem 3's prescription). The result is target-dependent (Table~\ref{tab:e4}): on the target with the protocol most similar to source (Jacquier), full transfer wins; on the broader-selection target (Firnberg), cold start wins; on the sparse-high-fitness target (Deng), no method recovers in 3 rounds. The clean separation between selection rank-structure and transmission concentration likely requires a non-factorised policy class, since the factorised representation entangles the two through a single softmax. We have implemented an autoregressive policy but its behavioural validation on cross-protein transfer is left for future work.
-
-\begin{table}[t]
-\centering
-\caption{E4 --- Cross-protein transfer (TEM-1 $\to$ BLAT family). Top-$1\%$ recall under a 3-round / 50-query budget. Theorem 3's prescription is target-dependent.}
-\label{tab:e4}
-\begin{tabular}{lccc}
-\toprule
-Target & Cold start & Full transfer & Selection-only \\
-\midrule
-BLAT-Deng (2012)        & $0.000\!\pm\!0.000$ & $0.000\!\pm\!0.000$ & $0.000\!\pm\!0.000$ \\
-BLAT-Firnberg (2014)    & $\mathbf{1.213\!\pm\!0.664}$ & $0.000\!\pm\!0.000$ & $0.106\!\pm\!0.191$ \\
-BLAT-Jacquier (2013)    & $0.222\!\pm\!0.079$ & $\mathbf{0.689\!\pm\!1.112}$ & $0.267\!\pm\!0.202$ \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Second, long-sequence DMS: we ran the same 5-round / 100-query / 5-seed active-learning protocol on TEM-1 (a 287-residue $\beta$-lactamase DMS) and the 600-bp BCL11A enhancer. PRICE-RL with uniform-init logits over the full alphabet \emph{does not} match AdaLead or PEX on long-sequence DMS where the labelled space is sparse: AdaLead's locality (mutate-from-best parents) wins decisively (Table~\ref{tab:e1b}). The mechanism is straightforward --- a fully diffuse factorised policy spreads probability mass over $A^L$ sequences with $A^L \gg$ a typical campaign budget on a $L=287$ landscape, and the $5\times 100$ queries are not enough to concentrate it near labelled high-fitness variants --- and it is one we did not anticipate from the GB1 results, where $L=4$ kept the support manageable. PRICE-RL still beats random and the fixed-mixing ablation on Enhancer ($4.86\!\pm\!7.37$ vs.\ random $1.46\!\pm\!0.34$), confirming that the controller adds value even where the absolute number is below the state of the art. Two natural fixes follow: a wildtype-aware initialisation that places extra logit mass at the WT base of each position, and a locality kernel that down-weights samples far from the labelled top-$k$. The §\ref{sec:large_scale} extensions evaluate both: the WT prior closes most of the gap on TEM-1 and Enhancer at small budgets, the locality kernel closes about half of the remaining gap on Enhancer at $4{,}000$ queries, and the proposal's ESM-2 backbone is the natural plug-in that we expect would close the rest by replacing the diffuse uniform prior with a learned protein-language prior.
-
-\begin{table}[t]
-\centering
-\caption{E1b --- Multi-DMS top-$1\%$ recall. PRICE-RL with uniform-alphabet initialisation is \emph{not} competitive on long-sequence DMS without a wildtype-aware prior.}
-\label{tab:e1b}
-\begin{tabular}{lccc}
-\toprule
-Method & GB1 (L=4) & TEM-1 (L=287) & Enhancer (L=600) \\
-\midrule
-Random                            & 0.004 & 0.114 & 1.459 \\
-PEX                               & 0.031 & 3.853 & 21.988 \\
-AdaLead                           & 0.161 & \textbf{4.449} & \textbf{20.082} \\
-PRICE-RL ($\alpha_S{=}\alpha_T$)  & 0.006 & 0.143 & 1.600 \\
-\textbf{PRICE-RL (full)}          & \textbf{0.161} & 0.106 & 4.859 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\paragraph{Aggregate threshold pass rate.} Of the six pre-registered hard thresholds in the research plan, five pass with large margins (Table~\ref{tab:thresholds}). The PI controller's tight-tracking threshold (T2) fails at $13\%$ (vs. $100\%$ required). We discuss the structural reason in §\ref{sec:discussion}; the appendix records two unsuccessful closure attempts (entropy injection, autoregressive policy class).
-
-\begin{table}[t]
-\centering
-\caption{Pre-registered thresholds (research-plan §7.3) and outcomes.}
-\label{tab:thresholds}
-\begin{tabular}{lll}
-\toprule
-ID & Threshold & Outcome \\
-\midrule
-T1 & cosine of $(g_S{+}g_T)$ vs.\ pooled REINFORCE $\geq 0.95$ & $\mathbf{1.0000}$ over 280 rounds \checkmark \\
-T2 & PI tight tracking ($|\rho_t-\rho^*|\leq 0.05$, $100\%$ seeds) & $13.3\%$; \emph{below threshold} \\
-T3 & Pearson($\langle\rho_t\rangle, \rho^*_{\mathrm{analytic}})\geq 0.7$ & $r = 0.995$ \checkmark \\
-T4 & PRICE vs.\ random ($p<0.10$); vs.\ AdaLead within 1 std & $p=0.0000$; gap $-0.0004$, std $0.042$ \checkmark \\
-T5 & $\rho_t$ leads proxy unc.\ by $\geq 2$ rounds, $\geq 80\%$ seeds & $100\%$ of 8 seeds, $9$--$11$ rounds \checkmark \\
-T6 & Reproducibility from \texttt{scripts/} & all numbers ship from CSV outputs \checkmark \\
-\bottomrule
-\end{tabular}
-\end{table}
+\paragraph{Aggregate thresholds.} Of the six pre-registered hard thresholds, five pass with large margins: T1 (cosine identity, $\geq 0.95$): $\mathbf{1.0000}$; T3 (Pearson $\geq 0.7$): $r=0.995$; T4 (PRICE vs.\ random, $p<0.10$): $p=0.0000$, gap to AdaLead within $1$ std; T5 ($\rho_t$ leads proxy uncertainty $\geq 2$ rounds, $\geq 80\%$ seeds): $100\%$ of $8$ seeds, $9$--$11$-round lead; T6 (reproducibility from \texttt{scripts/}): all numbers ship from CSV outputs. T2 (PI tight tracking, $|\rho_t-\rho^*|\leq 0.05$ in $100\%$ of seeds): $13.3\%$, below threshold and structurally so (§\ref{sec:discussion}). Full per-experiment tables and the threshold audit are in Appendix~\ref{app:phaseB}--\ref{app:audit}.

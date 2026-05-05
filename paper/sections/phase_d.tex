@@ -128,14 +128,15 @@ This is biologically substantive. PEX produces extreme diversity but at very low
 \centering
 \caption{Where each method wins, summarised across 13 benchmark configurations.}
 \label{tab:wins}
-\begin{tabular}{lcl}
+\small
+\begin{tabular}{lcp{0.55\textwidth}}
 \toprule
-Method & \# benchmarks where it is best & Notes \\
+Method & \#\,best & Notes \\
 \midrule
-PRICE-RL                            & 5 / 13 & GB1-4000q, GB1-8000q, Trap-5, AAV-500q, GFP-500q \\
-AdaLead                             & 6 / 13 & TEM-1 (all budgets), Enhancer (all budgets), GFP-mega, AAV-mega \\
-PEX                                 & 1 / 13 & Enhancer-500q (matches AdaLead) \\
-GFlowNet-AL                         & 0 / 13 & Always behind PRICE-RL where compared \\
+PRICE-RL    & 5 / 13 & GB1-4000q, GB1-8000q, Trap-5, AAV-500q, GFP-500q \\
+AdaLead     & 6 / 13 & TEM-1 (all budgets), Enhancer (all budgets), GFP-mega, AAV-mega \\
+PEX         & 1 / 13 & Enhancer-500q (matches AdaLead) \\
+GFlowNet-AL & 0 / 13 & Always behind PRICE-RL where compared \\
 \bottomrule
 \end{tabular}
 \end{table}

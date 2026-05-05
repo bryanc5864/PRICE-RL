@@ -1,4 +1,4 @@
-\begin{thebibliography}{35}
+\begin{thebibliography}{30}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -36,16 +36,6 @@ Christian Dallago, Jody Mou, Kadina~E. Johnston, Bruce~J. Wittmann, Nicholas
 \newblock In \emph{Advances in Neural Information Processing Systems
   ({NeurIPS}) Datasets and Benchmarks Track}, 2021.
 
-\bibitem[Deng et~al.(2012)Deng, Huang, Bakkalbasi, Brown, Adamski, Rice, Muzny,
-  Gibbs, and Palzkill]{deng2012blat}
-Zhifeng Deng, Wanzhi Huang, Erol Bakkalbasi, Nicholas~G. Brown, Carolyn~J.
-  Adamski, Kacie Rice, Donna Muzny, Richard~A. Gibbs, and Timothy Palzkill.
-\newblock Deep sequencing of systematic combinatorial libraries reveals
-  beta-lactamase sequence constraints at high resolution.
-\newblock \emph{Journal of Molecular Biology}, 424\penalty0 (3-4):\penalty0
-  150--167, 2012.
-\newblock \doi{10.1016/j.jmb.2012.09.014}.
-
 \bibitem[Esposito et~al.(2019)Esposito, Weile, Shendure, Starita, Papenfuss,
   Roth, Fowler, and Rubin]{esposito2019mavedb}
 Daniel Esposito, Jochen Weile, Jay Shendure, Lea~M. Starita, Anthony~T.
@@ -66,14 +56,6 @@ Adibvafa Fallahpour, Andrew Magnuson, Purav Gupta, Shihao Ma, Jack Naimer,
   ({NeurIPS})}, 2025.
 \newblock arXiv:2505.23579.
 
-\bibitem[Firnberg et~al.(2014)Firnberg, Labonte, Gray, and
-  Ostermeier]{firnberg2014blat}
-Elad Firnberg, Jason~W. Labonte, Jeffrey~J. Gray, and Marc Ostermeier.
-\newblock A comprehensive, high-resolution map of a gene's fitness landscape.
-\newblock \emph{Molecular Biology and Evolution}, 31\penalty0 (6):\penalty0
-  1581--1592, 2014.
-\newblock \doi{10.1093/molbev/msu081}.
-
 \bibitem[Frank(2012)]{frank2012natural}
 Steven~A. Frank.
 \newblock Natural selection. {IV}. the {P}rice equation.
@@ -93,17 +75,6 @@ David~E. Goldberg.
 \newblock \emph{Genetic Algorithms in Search, Optimization, and Machine
   Learning}.
 \newblock Addison-Wesley, 1989.
-
-\bibitem[Jacquier et~al.(2013)Jacquier, Birgy, Le~Nagard, Mechulam, Schmitt,
-  Glodt, Bercot, Petit, Poulain, Barnaud, Gros, and
-  Tenaillon]{jacquier2013blat}
-Herve Jacquier, Andre Birgy, Herve Le~Nagard, Yves Mechulam, Emmanuelle
-  Schmitt, Jeremy Glodt, Beatrice Bercot, Emmanuel Petit, Julie Poulain,
-  Guilene Barnaud, Pierre-Andre Gros, and Olivier Tenaillon.
-\newblock Capturing the mutational landscape of the beta-lactamase {TEM-1}.
-\newblock \emph{Proceedings of the National Academy of Sciences}, 110\penalty0
-  (32):\penalty0 13067--13072, 2013.
-\newblock \doi{10.1073/pnas.1215206110}.
 
 \bibitem[Jain et~al.(2022)Jain, Bengio, Hernandez-Garcia, Rector-Brooks,
   Dossou, Ekbote, Fu, Zhang, Kilgour, Zhang, Simine, Das, and
@@ -203,14 +174,6 @@ Zhizhou Ren, Jiahan Li, Fan Ding, Yuan Zhou, Jianzhu Ma, and Jian Peng.
 \newblock In \emph{Proceedings of the 39th International Conference on Machine
   Learning ({ICML})}, 2022.
 
-\bibitem[Salimans et~al.(2017)Salimans, Ho, Chen, Sidor, and
-  Sutskever]{salimans2017evolution}
-Tim Salimans, Jonathan Ho, Xi~Chen, Szymon Sidor, and Ilya Sutskever.
-\newblock Evolution strategies as a scalable alternative to reinforcement
-  learning.
-\newblock \emph{arXiv preprint}, 2017.
-\newblock arXiv:1703.03864.
-
 \bibitem[Sarkisyan et~al.(2016)Sarkisyan, Bolotin, Meer, Usmanova, Mishin,
   Sharonov, Ivankov, Bozhanova, Baranov, Soylemez, Bogatyreva, Vlasov, Egorov,
   Logacheva, Kondrashov, Chudakov, Putintseva, Mamedov, Tawfik, Lukyanov, and
@@ -264,14 +227,6 @@ Haoran Sun, Liang He, Pan Deng, Guoqing Liu, Haiguang Liu, Chuan Cao, Fusong
   reinforcement learning.
 \newblock \emph{Nature Machine Intelligence}, 2025.
 \newblock \doi{10.1038/s42256-025-01103-w}.
-
-\bibitem[Towers et~al.(2024)Towers, James, Steel, and
-  Kempf]{towers2024ruggedness}
-Sebastian Towers, Jessica James, Harrison Steel, and Idris Kempf.
-\newblock Learning-based estimation of fitness landscape ruggedness for
-  directed evolution.
-\newblock \emph{bioRxiv}, 2024.
-\newblock \doi{10.1101/2024.02.28.582468}.
 
 \bibitem[Wu et~al.(2016)Wu, Dai, Olson, Lloyd-Smith, and Sun]{wu2016adaptation}
 Nicholas~C. Wu, Lei Dai, C.~Anders Olson, James~O. Lloyd-Smith, and Ren Sun.

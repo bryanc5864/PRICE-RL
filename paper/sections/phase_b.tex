@@ -12,12 +12,14 @@ The §\ref{sec:results} finding that PRICE-RL with uniform-init logits underperf
 \centering
 \caption{E1-wt --- Multi-DMS active learning with WT-aware vs.\ uniform PRICE-RL. 5 seeds \(\times\) 5 rounds \(\times\) 100 queries.}
 \label{tab:e1wt}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lccccc}
 \toprule
-Dataset & PRICE-RL (uniform) & PRICE-RL (\textbf{WT init}) & Random & PEX & AdaLead \\
+Dataset & PRICE (uniform) & PRICE (\textbf{WT init}) & Random & PEX & AdaLead \\
 \midrule
-TEM-1 (L=287)        & $0.106 \pm 0.111$ & $\mathbf{1.094 \pm 0.629}$ & $0.114 \pm 0.034$ & $3.85 \pm 3.51$ & $4.45 \pm 1.97$ \\
-Enhancer (L=600)     & $4.86 \pm 6.59$   & $\mathbf{6.96 \pm 7.03}$  & $1.46 \pm 0.34$  & $21.99 \pm 1.46$ & $20.08 \pm 1.65$ \\
+TEM-1 ($L{=}287$) & $0.106 \pm 0.111$ & $\mathbf{1.094 \pm 0.629}$ & $0.114 \pm 0.034$ & $3.85 \pm 3.51$ & $4.45 \pm 1.97$ \\
+Enhancer ($L{=}600$) & $4.86 \pm 6.59$ & $\mathbf{6.96 \pm 7.03}$ & $1.46 \pm 0.34$ & $21.99 \pm 1.46$ & $20.08 \pm 1.65$ \\
 \bottomrule
 \end{tabular}
 \end{table}

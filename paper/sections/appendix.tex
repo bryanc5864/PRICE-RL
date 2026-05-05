@@ -18,11 +18,11 @@ Then $g_{\mathrm{pool}}(\theta) = g_S(\theta) + g_T(\theta)$ for every $\theta \
 
 \begin{proof}
 The set $\{S, \bar S\}$ is a partition of $X$ by definition: $S \cup \bar S = X$ and $S \cap \bar S = \emptyset$, and the indicator identity $\mathbb{1}_S(x) + \mathbb{1}_{\bar S}(x) = 1$ holds for every $x \in X$. Multiplying both sides of this identity by $\pi_\theta(x)\,(R(x)-b)\,\nabla_\theta \log\pi_\theta(x)$ --- a real-valued vector function of $x$ --- and summing over $x \in X$ gives
-\[
-\sum_{x\in X} \!\pi_\theta(x)\,(R(x)-b)\,\nabla_\theta \log\pi_\theta(x)
-\;=\; \sum_{x\in S} \!\pi_\theta(x)\,(R(x)-b)\,\nabla_\theta \log\pi_\theta(x)
-+ \sum_{x\in \bar S} \!\pi_\theta(x)\,(R(x)-b)\,\nabla_\theta \log\pi_\theta(x).
-\]
+\begin{align*}
+\sum_{x\in X} \pi_\theta(x)\,(R(x)-b)\,\nabla_\theta \log\pi_\theta(x)
+&= \sum_{x\in S} \pi_\theta(x)\,(R(x)-b)\,\nabla_\theta \log\pi_\theta(x) \\
+&\quad + \sum_{x\in \bar S} \pi_\theta(x)\,(R(x)-b)\,\nabla_\theta \log\pi_\theta(x).
+\end{align*}
 The left-hand side is $g_{\mathrm{pool}}(\theta)$ and the two terms on the right are $g_S(\theta)$ and $g_T(\theta)$. The factorised structure of $\pi_\theta$ is not used in this argument: the proof goes through for \emph{any} parameterised distribution over $X$ for which $\nabla_\theta \log\pi_\theta(x)$ exists. The independence of $S$ from $\theta$ is the only non-trivial hypothesis; if $S = S(\theta)$ depends on the parameters, the partition still holds pointwise but its derivative structure picks up boundary terms that we handle separately in §\ref{app:thm1_sthet}.
 \hfill$\square$
 \end{proof}
