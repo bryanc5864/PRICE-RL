@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.1)  4 MAY 2026 23:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.1)  4 MAY 2026 23:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -617,7 +617,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 38
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 37
 .
 
 (C:\Users\zhaoz\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1phv.fd
@@ -633,11 +633,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 {C:/Users/zhaoz/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/zhao
 z/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]) (sections/relate
-d_work.tex
-Underfull \vbox (badness 2035) has occurred while \output is active []
-
- [2])
-(sections/methods.tex
+d_work.tex) (sections/methods.tex [2]
 Underfull \hbox (badness 1558) in paragraph at lines 6--7
  []\T1/ptm/b/n/10 (+20) The de-com-posed pol-icy gra-di-ent.[] \T1/ptm/m/n/10 (
 +20) Let $\OML/cmm/m/it/10 ^^Y[]$ \T1/ptm/m/n/10 (+20) be a fac-torised cat-e-g
@@ -651,53 +647,53 @@ Underfull \hbox (badness 10000) in paragraph at lines 10--12
 lised im-por-tance weight
  []
 
-[3]) (sections/experiments.tex) (sections/results.tex
-<../figures/fig_T1_cosine_histogram.pdf, id=348, 504.33104pt x 219.36856pt>
+) (sections/experiments.tex [3]) (sections/results.tex
+<../figures/fig_T1_cosine_histogram.pdf, id=345, 504.33104pt x 219.36856pt>
 File: ../figures/fig_T1_cosine_histogram.pdf Graphic file (type pdf)
 <use ../figures/fig_T1_cosine_histogram.pdf>
 Package pdftex.def Info: ../figures/fig_T1_cosine_histogram.pdf  used on input 
 line 8.
 (pdftex.def)             Requested size: 238.49341pt x 103.73587pt.
- [4]
-<../figures/fig_E3_best_vs_K.pdf, id=372, 426.1998pt x 251.98453pt>
+ [4 <../figures/fig_T1_cosine_histogram.pdf>]
+<../figures/fig_E3_best_vs_K.pdf, id=442, 426.1998pt x 251.98453pt>
 File: ../figures/fig_E3_best_vs_K.pdf Graphic file (type pdf)
 <use ../figures/fig_E3_best_vs_K.pdf>
 Package pdftex.def Info: ../figures/fig_E3_best_vs_K.pdf  used on input line 18
 .
 (pdftex.def)             Requested size: 194.76982pt x 115.15681pt.
-<../figures/fig_E3_rho_vs_K.pdf, id=373, 424.58249pt x 251.46384pt>
+<../figures/fig_E3_rho_vs_K.pdf, id=443, 424.58249pt x 251.46384pt>
 File: ../figures/fig_E3_rho_vs_K.pdf Graphic file (type pdf)
 <use ../figures/fig_E3_rho_vs_K.pdf>
 Package pdftex.def Info: ../figures/fig_E3_rho_vs_K.pdf  used on input line 22.
 
 (pdftex.def)             Requested size: 194.76982pt x 115.35245pt.
-<../figures/fig_E1_gb1_bars.pdf, id=377, 570.68015pt x 216.30754pt>
+<../figures/fig_E1_gb1_bars.pdf, id=447, 570.68015pt x 216.30754pt>
 File: ../figures/fig_E1_gb1_bars.pdf Graphic file (type pdf)
 <use ../figures/fig_E1_gb1_bars.pdf>
 Package pdftex.def Info: ../figures/fig_E1_gb1_bars.pdf  used on input line 33.
 
 (pdftex.def)             Requested size: 337.86465pt x 128.06592pt.
- [5 <../figures/fig_T1_cosine_histogram.pdf> <../figures/fig_E3_best_vs_K.pdf> 
-<../figures/fig_E3_rho_vs_K.pdf>]
-<../figures/fig_E2_rho_vs_uncertainty.pdf, id=597, 498.55133pt x 244.66281pt>
+ [5 <../figures/fig_E3_best_vs_K.pdf> <../figures/fig_E3_rho_vs_K.pdf> <../figu
+res/fig_E1_gb1_bars.pdf>]
+<../figures/fig_E2_rho_vs_uncertainty.pdf, id=637, 498.55133pt x 244.66281pt>
 File: ../figures/fig_E2_rho_vs_uncertainty.pdf Graphic file (type pdf)
 <use ../figures/fig_E2_rho_vs_uncertainty.pdf>
 Package pdftex.def Info: ../figures/fig_E2_rho_vs_uncertainty.pdf  used on inpu
 t line 43.
 (pdftex.def)             Requested size: 218.61795pt x 107.2861pt.
-<../figures/fig_E2_reward_gap.pdf, id=598, 426.28134pt x 208.5278pt>
+<../figures/fig_E2_reward_gap.pdf, id=638, 426.28134pt x 208.5278pt>
 File: ../figures/fig_E2_reward_gap.pdf Graphic file (type pdf)
 <use ../figures/fig_E2_reward_gap.pdf>
 Package pdftex.def Info: ../figures/fig_E2_reward_gap.pdf  used on input line 4
 7.
 (pdftex.def)             Requested size: 166.94296pt x 81.66597pt.
-) (sections/large_scale.tex [6 <../figures/fig_E1_gb1_bars.pdf> <../figures/fig
-_E2_rho_vs_uncertainty.pdf> <../figures/fig_E2_reward_gap.pdf>]
-[7]) (sections/discussion.tex)
-Underfull \vbox (badness 2894) has occurred while \output is active []
+) (sections/large_scale.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [8]
-(main.bbl [9] [10]) (sections/appendix.tex
+ [6 <../figures/fig_E2_rho_vs_uncertainty.pdf> <../figures/fig_E2_reward_gap.pd
+f>])
+(sections/discussion.tex [7]) [8] (main.bbl [9]) (sections/appendix.tex
+[10]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 42.
@@ -739,19 +735,15 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 54.
 
-<../figures/fig_all_benchmarks_scatter.pdf, id=831, 1073.93494pt x 252.38382pt>
+<../figures/fig_all_benchmarks_scatter.pdf, id=828, 1073.93494pt x 252.38382pt>
 
 File: ../figures/fig_all_benchmarks_scatter.pdf Graphic file (type pdf)
 <use ../figures/fig_all_benchmarks_scatter.pdf>
 Package pdftex.def Info: ../figures/fig_all_benchmarks_scatter.pdf  used on inp
 ut line 123.
 (pdftex.def)             Requested size: 397.48499pt x 93.41135pt.
-) (sections/phase_c.tex
-Underfull \vbox (badness 1817) has occurred while \output is active []
-
- [14]
-[15]
-<../figures/fig_E10_perpos_entropy.pdf, id=850, 348.34401pt x 222.9818pt>
+) (sections/phase_c.tex [14] [15 <../figures/fig_all_benchmarks_scatter.pdf>]
+<../figures/fig_E10_perpos_entropy.pdf, id=913, 348.34401pt x 222.9818pt>
 File: ../figures/fig_E10_perpos_entropy.pdf Graphic file (type pdf)
 <use ../figures/fig_E10_perpos_entropy.pdf>
 Package pdftex.def Info: ../figures/fig_E10_perpos_entropy.pdf  used on input l
@@ -770,7 +762,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 131.
 
-) (sections/phase_d.tex [16 <../figures/fig_all_benchmarks_scatter.pdf>]
+) (sections/phase_d.tex [16]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 50.
@@ -787,7 +779,10 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\sigma' on input line 50.
 
-[17]
+
+Underfull \vbox (badness 1348) has occurred while \output is active []
+
+ [17]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 94.
@@ -796,7 +791,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\times' on input line 94.
 
-<../figures/fig_synthesis_heatmap.pdf, id=931, 736.61699pt x 418.69662pt>
+<../figures/fig_synthesis_heatmap.pdf, id=929, 736.61699pt x 418.69662pt>
 File: ../figures/fig_synthesis_heatmap.pdf Graphic file (type pdf)
 <use ../figures/fig_synthesis_heatmap.pdf>
 Package pdftex.def Info: ../figures/fig_synthesis_heatmap.pdf  used on input li
@@ -814,7 +809,11 @@ Underfull \hbox (badness 2277) in paragraph at lines 9--10
 0 ; \OMS/cmsy/m/n/10 C\OML/cmm/m/it/10 ; r\OT1/cmr/m/n/10 ) =
  []
 
-[19])) [20] [21 <../figures/fig_synthesis_heatmap.pdf>] [22] (main.aux)
+
+Underfull \vbox (badness 1728) has occurred while \output is active []
+
+ [19]))
+[20] [21 <../figures/fig_synthesis_heatmap.pdf>] [22] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
@@ -827,13 +826,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 53E79F5788006B1FDA075EEAE6A65E36;11073.
  ) 
 Here is how much of TeX's memory you used:
- 16290 strings out of 467871
- 260871 string characters out of 5418377
- 728895 words of memory out of 5000000
+ 16284 strings out of 467871
+ 260820 string characters out of 5418377
+ 725895 words of memory out of 5000000
  44404 multiletter control sequences out of 15000+600000
- 692692 words of font info for 326 fonts, out of 8000000 for 9000
+ 692337 words of font info for 322 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,15n,79p,1777b,699s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,15n,79p,1658b,632s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\zhaoz\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt
 1000.pk><C:/Users/zhaoz/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmbx10.pfb><C:/Users/zhaoz/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -866,9 +865,9 @@ Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/zhaoz/AppData/Local/
 Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/zhaoz/AppData/Local
 /Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/zhaoz/AppData/Local
 /Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (22 pages, 710774 bytes).
+Output written on main.pdf (22 pages, 709247 bytes).
 PDF statistics:
- 1300 PDF objects out of 1440 (max. 8388607)
+ 1297 PDF objects out of 1440 (max. 8388607)
  150 named destinations out of 1000 (max. 500000)
  64382 words of extra memory for PDF output out of 74296 (max. 10000000)
 
