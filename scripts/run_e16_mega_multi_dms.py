@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """E16 — Mega-budget multi-DMS with WT init.
 All 4 DMS at 4000-query budget × 5 seeds × WT-init PRICE-RL.
 """

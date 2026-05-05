@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """
 Experiment E1 — Low-data active-learning on GB1 four-mutation landscape
 (Wu et al. 2016). Tests Hypothesis H1, hard threshold T4.

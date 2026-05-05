@@ -1,6 +1,6 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """
-Decomposed policy gradient (Theorem 1, RESEARCH_PLAN.md §4 step 4-5).
+Decomposed policy gradient (Theorem 1, the paper step 4-5).
 
 Given a policy π_θ, a previous policy π_old (frozen reference defining the
 support supp_t), and a batch of (x, R(x)) tuples sampled from π_θ, partition
@@ -13,7 +13,7 @@ Membership is decided by an embedding-density model trained on samples from
 π_old (for NK / factorised policies the natural surrogate is the log-prob
 under π_old itself: x is "in support" iff log π_old(x) ≥ q-th percentile of
 log-probs from a reference sample. This is the embedding-density support of
-RESEARCH_PLAN.md §5.2 instantiated for factorised categorical policies).
+the paper instantiated for factorised categorical policies).
 
 Theorem 1 (exactness): for a factorised categorical policy, the standard
 REINFORCE gradient ∇J equals g_S + g_T exactly, since the partition is a

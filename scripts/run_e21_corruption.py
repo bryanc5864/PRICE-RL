@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """E21 — Surrogate corruption robustness.
 Inject Gaussian noise of increasing std into the proxy reward; track
 ρ_t alarm vs. true reward gap. Establishes the signal-vs-noise frontier

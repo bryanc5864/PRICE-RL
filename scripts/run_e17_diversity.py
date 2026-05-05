@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """E17 — Diversity-aware metrics on GB1 mega-budget.
 Re-evaluates the Phase-B E1-mega trajectories for top-K-unique and
 mean-pairwise-Hamming, in addition to top-1% recall.

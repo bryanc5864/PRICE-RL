@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """
 A faithful δ-CS-style baseline (Kim et al., ICML 2025).
 The current state of the art for active-learning RL in biology uses

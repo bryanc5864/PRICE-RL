@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """E13 — T2 redesign: track policy entropy convergence to a target instead
 of ρ_t convergence. Entropy IS a structural property the controller can
 move (via α scaling). Test on NK K∈{0,3,10,19} × 5 seeds × 12 rounds.

@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """E10 — Per-position selection vs transmission decomposition.
 
 For each position i, we compute the per-position contribution to g_S

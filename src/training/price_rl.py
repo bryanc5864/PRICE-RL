@@ -1,6 +1,6 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """
-The PRICE-RL active-learning loop (RESEARCH_PLAN.md §4 + §5).
+The PRICE-RL active-learning loop.
 """
 from __future__ import annotations
 

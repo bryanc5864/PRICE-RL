@@ -1,6 +1,6 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """
-Autoregressive categorical policy (RESEARCH_PLAN extension §13).
+Autoregressive categorical policy.
 
   π(x) = ∏_i π(x_i | x_<i)
 

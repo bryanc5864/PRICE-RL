@@ -1,9 +1,0 @@
-seed=0 PRICE=0.082 ada=0.188
-seed=1 PRICE=0.120 ada=0.189
-seed=2 PRICE=0.095 ada=0.073
-seed=3 PRICE=0.119 ada=0.186
-seed=4 PRICE=0.137 ada=0.169
-
-E9 done in 350.0s
-  price_rl_closed_loop     top1%=0.1105±0.0193
-  adalead_closed_loop      top1%=0.1609±0.0445

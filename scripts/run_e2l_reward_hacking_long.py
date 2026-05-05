@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """E2-L — Long-horizon reward-hacking diagnostic.
 30 rounds × 16 seeds × 5-model ensemble. Statistical CIs on lead time."""
 from __future__ import annotations

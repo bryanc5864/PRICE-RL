@@ -1,6 +1,6 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """
-Loaders for the five DMS / regulatory benchmarks named in RESEARCH_PLAN.md §6.
+Loaders for the five DMS / regulatory benchmarks named in the paper
 
 All loaders return a uniform schema:
 

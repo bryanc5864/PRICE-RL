@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """E3-AR — Validate AR policy on NK as a test for whether the richer policy
 class closes the T2 (controller tight tracking) gap."""
 from __future__ import annotations

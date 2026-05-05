@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """
 Combined PRICE-RL + δ-CS-style proxy-uncertainty clipping.
 The discussion section claims they're complementary; this lets us

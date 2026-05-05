@@ -1,7 +1,7 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """
 Aggregate the raw CSV outputs from E1/E2/E3 into the threshold table
-(T1–T6, S1–S3, F1–F3) defined in RESEARCH_PLAN.md §7.3 and emit
+(T1–T6, S1–S3, F1–F3) defined in the paper and emit
 publication figures.
 """
 from __future__ import annotations

@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """E3-L — Large-scale NK sweep with bootstrap CIs.
 N=40, K∈{0,1,3,5,8,12,18,25,32,39}, 10 seeds, 16 rounds, batch 96.
 """

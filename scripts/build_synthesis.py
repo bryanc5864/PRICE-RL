@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """Build the cross-method synthesis figure: PRICE-RL position vs every
 baseline on every available benchmark."""
 from __future__ import annotations

@@ -1,5 +1,5 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
-"""Active-learning metrics (RESEARCH_PLAN.md §7.1)."""
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+"""Active-learning metrics."""
 from __future__ import annotations
 
 import numpy as np

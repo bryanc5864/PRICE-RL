@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """E2-combined — Hybrid PRICE-RL + δ-CS-style uncertainty clipping.
 Tests the discussion-section claim that the two are complementary.
 Compare three policies on the same surrogate / true landscape:

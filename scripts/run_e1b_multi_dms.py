@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """
 Experiment E1b — multi-DMS active learning. Extends E1 (GB1) to GFP,
 AAV, TEM-1, BCL11A enhancer. 5 rounds × B=100 × 5 seeds.

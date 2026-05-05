@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """E14 — ESM-2 backbone integration on TEM-1 DMS.
 
 The proposal called for ESM-2 (150M) as a frozen backbone. We use the

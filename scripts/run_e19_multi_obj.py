@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """E19 — Multi-objective PRICE-RL.
 Vector-valued NK landscape (2 objectives). PRICE-RL is run with a
 scalarised reward (uniform-weight sum of R_a and R_b) and the Pareto

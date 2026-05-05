@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """E20 — PRICE-RL diagnostic on a token-level RLHF-style reward-hacking
 experiment.
 

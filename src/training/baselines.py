@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """
 Reproducible baselines for active learning over discrete sequences:
 - random: uniform over the alphabet
@@ -6,7 +6,7 @@ Reproducible baselines for active learning over discrete sequences:
 - PEX (Ren et al. 2022): proximal exploration with edit-distance regulariser
 
 These implementations are intentionally minimal — exactly what is needed
-to compete on the small fixed-budget protocol (RESEARCH_PLAN.md §7.1).
+to compete on the small fixed-budget protocol.
 """
 from __future__ import annotations
 

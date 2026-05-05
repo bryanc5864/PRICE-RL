@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """E9 — Closed-loop active learning with retrained surrogate on GB1.
 
 Replaces the cached-table oracle with a small MLP surrogate that is

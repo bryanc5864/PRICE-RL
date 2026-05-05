@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """
 Lightweight proxy surrogate model for E2 (reward-hacking diagnostic).
 Trained on a deliberately undersized labeled set to *induce* OOD failure,

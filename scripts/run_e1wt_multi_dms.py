@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """E1-wt — Multi-DMS active learning with WT-aware initialisation.
 Closes the long-sequence DMS gap. Compares against same baselines as E1b."""
 from __future__ import annotations

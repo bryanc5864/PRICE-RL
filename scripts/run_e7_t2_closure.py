@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """E7 — T2 closure via entropy injection.
 Full sweep: factorised vs AR × inject vs no-inject × K ∈ {0,3,5,10,15,19} × 5 seeds.
 """

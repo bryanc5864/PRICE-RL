@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """Mann-Whitney U tests + per-seed scatter plots over all benchmarks.
 Produces a single LaTeX-ready table + an "all-benchmarks" scatter figure.
 """

@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """E15 — ρ-gated closed-loop AL: fix the E9 weakness.
 
 E9 showed AdaLead beats PRICE-RL when the policy trains on a retrained

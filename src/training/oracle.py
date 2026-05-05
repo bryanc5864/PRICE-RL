@@ -1,4 +1,4 @@
-# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
 """
 Active-learning oracle wrapper. Takes a fitness-table dataset (cached DMS or
 NK) and answers queries on int-encoded sequences. For DMS we use a hash-map

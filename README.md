@@ -1,0 +1,156 @@
+# PRICE-RL — Selection–Transmission Decomposed Reinforcement Learning
+
+> **NeurIPS 2026 anonymous submission.** This repository contains the
+> reference implementation, experiment scripts, and analysis pipeline for the
+> paper *PRICE-RL: Selection–Transmission Decomposed Reinforcement Learning
+> for Sequential Biological Design.*
+
+PRICE-RL is a reinforcement-learning algorithm for biological sequence design
+whose policy-gradient update is decomposed --- exactly, sample-wise, on every
+batch --- into a **selection** component that re-weights variants the policy
+already supports and a **transmission** component that shifts the policy's
+support into new regions of sequence space. A PI controller drives the
+empirical Price ratio `ρ_t = ‖g_S‖ / (‖g_S‖ + ‖g_T‖)` towards a target
+derived from the reward landscape's autocorrelation length, and the same
+ratio doubles as a per-round reward-hacking diagnostic.
+
+## Repository layout
+
+```
+.
+├── src/                         # algorithm implementation (importable as `src.*`)
+│   ├── data/                    # NK landscape, Trap-K, DMS loaders
+│   ├── models/                  # factorised + autoregressive policies
+│   ├── training/                # decomposed gradient, PI controller, PRICE-RL loop
+│   ├── evaluation/              # baselines (AdaLead, PEX, GFlowNet-AL), δ-CS
+│   └── utils/                   # seeding, logging, IO helpers
+├── scripts/                     # one experiment per script (E1, E2, …, E21)
+│   ├── _palette.py              # unified blue/green matplotlib palette
+│   ├── run_e*.py                # campaign runners; write CSVs to experiments/
+│   ├── analyze_results.py       # E1–E5 small-experiment tables + figures
+│   ├── analyze_large_scale.py   # E1-L, E2-L, E3-L, E5-L, E6 + bootstrap CIs
+│   ├── significance_tests.py    # Mann–Whitney U + Wilcoxon
+│   ├── build_synthesis.py       # cross-method synthesis heatmap
+│   └── replot_e10.py            # re-emit the per-position entropy heatmap
+├── data/                        # cached oracle tables (GB1, TEM-1, GFP, AAV, Enhancer, BLAT)
+├── experiments/                 # per-experiment CSV outputs
+├── figures/                     # publication PNG/PDF figures
+├── requirements.txt
+├── LICENSE                      # MIT
+└── README.md
+```
+
+The `data/` directory ships the cached oracle tables that the scripts query.
+GB1 four-mutation is from the FLIP repository; GFP, TEM-1 β-lactamase, and
+AAV are from ProteinGym v0.1; the BCL11A enhancer is from MaveDB; the BLAT
+family is the Deng / Firnberg / Jacquier triplet on TEM-1. Citations and
+URLs are listed in the paper's experimental-setup section. The synthetic NK
+and Trap-K landscapes are deterministic (Blake2b-keyed) and generated on the
+fly by `src/data/`.
+
+## Installation
+
+```bash
+python -m venv .venv && source .venv/bin/activate    # or conda create
+pip install -r requirements.txt
+```
+
+The pipeline requires Python ≥ 3.10. A CUDA GPU is helpful but not required;
+all small-experiment scripts run in seconds on CPU, and the large-scale
+sweeps run in 10–30 minutes on a single consumer GPU (RTX 2080 Ti). For the
+AAV oracle (`run_e8_aav_gpu.py`) a GPU is mandatory.
+
+## Reproducing the paper's headline numbers
+
+Each result in the paper corresponds to a deterministic, single-command
+runner. The scripts write CSVs into `experiments/<name>/` and figures into
+`figures/`. To reproduce the headline experiments end-to-end:
+
+```bash
+# Theorem 1 cosine identity (T1) and the analytic-vs-empirical ρ correlation (T3)
+python scripts/run_e3_nk_sweep.py
+python scripts/run_e3l_nk_large.py        # 1,600 round-seeds at N=40
+
+# GB1 active learning at multiple budgets (T4)
+python scripts/run_e1_gb1.py              # 500-q tie with AdaLead
+python scripts/run_e1l_gb1_long.py        # 4,000-q +8% lead
+python scripts/run_e1mega_gb1.py          # 8,000-q +12.4% lead, non-overlapping CIs
+
+# Reward-hacking diagnostic (T5) and surrogate-corruption robustness
+python scripts/run_e2_reward_hacking.py
+python scripts/run_e2l_reward_hacking_long.py
+python scripts/run_e21_corruption.py
+
+# Cross-domain validation (Trap-K) and scaling
+python scripts/run_e5_cross_domain.py
+python scripts/run_e5l_trap_scaling.py
+
+# Multi-objective and token-level RLHF transfer
+python scripts/run_e19_multi_obj.py
+python scripts/run_e20_token_rlhf.py
+```
+
+To rebuild every paper figure and table in one pass after the runners finish:
+
+```bash
+python scripts/analyze_results.py         # E1–E5 small-experiment outputs
+python scripts/analyze_large_scale.py     # bootstrap CIs over E1-L, E2-L, …
+python scripts/significance_tests.py      # Mann–Whitney U + per-seed scatter
+python scripts/build_synthesis.py         # cross-method synthesis heatmap
+python scripts/replot_e10.py              # per-position entropy heatmap
+```
+
+Every figure in the paper is regenerated by one of the scripts above. All
+analysis scripts import `_palette` to apply the unified blue/green palette,
+so any user-modified call site that adds a new figure inherits the same
+colour scheme automatically.
+
+## Algorithm in 30 lines
+
+The full PRICE-RL inner loop lives in `src/training/price_rl.py`; the
+decomposition itself is a five-line operation:
+
+```python
+# samples a_t ~ pi_{theta_{t-1}}, queried oracle r_t = R(a_t)
+mask = support_mask(log_pi_prev(a_t), tau_t)            # in/out of support
+g_S  = grad_log_pi(a_t[mask])  * (r_t[mask]  - b)       # selection term
+g_T  = grad_log_pi(a_t[~mask]) * (r_t[~mask] - b) * iw  # transmission term, clipped IW
+rho  = norm(g_S) / (norm(g_S) + norm(g_T))               # the Price ratio
+alpha_S, alpha_T = controller.step(rho, rho_star_t)      # PI feedback
+theta -= alpha_S * g_S + alpha_T * g_T
+```
+
+The cosine identity `g_S + g_T = g_pool` is sample-wise exact and is
+verified at every round of every experiment (`src/training/decomposed_gradient.py`).
+
+## Hyperparameters
+
+The defaults are held fixed across every benchmark in the paper (see the
+appendix table of the manuscript):
+
+| Knob                             | Value          |
+| -------------------------------- | -------------- |
+| PI gains `(k_p, k_i)`            | `(1.5, 0.4)`   |
+| Log-ratio clip                   | `±4`           |
+| Base learning rate               | `2.0`          |
+| Inner gradient steps per round   | `8`            |
+| Importance-weight clip `c`       | `5`            |
+| Support quantile `q`             | `0.05`         |
+| Entropy coefficient              | `0.01`         |
+| Reward standardisation           | batch-wise     |
+| Locality radius `r` (E18)        | `max(2, 0.04 L)` |
+| WT-init logit strength           | `4.0`          |
+
+The 480-run hyperparameter robustness study (`run_e6_hp_robustness.py`)
+verifies the algorithm is robust over an order of magnitude on each axis.
+
+## Anonymity
+
+This repository is anonymised for double-blind review. There are no author
+names, affiliations, or e-mail addresses anywhere in the source, the LICENSE,
+or the commit history of this distribution. If you find any residual
+identifying information, please flag it; we will remove it and re-tag.
+
+## Licence
+
+MIT (see `LICENSE`).
