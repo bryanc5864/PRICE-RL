@@ -1,6 +1,6 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """
-Reward-landscape autocorrelation length estimator.
+Reward-landscape autocorrelation length estimator (RESEARCH_PLAN.md §5.2).
 
 Given a history H_t = {(s_i, R(s_i))}, fit
     Cov(R(s), R(s')) / Var(R) ≈ exp(-d / L)
@@ -84,7 +84,7 @@ def rho_star_from_L(L_hat: float, length: int) -> float:
     This mapping was validated empirically on the NK sweep: on K=0
     (smooth, L=N), ρ* ≈ 0.33; on K=N-1 (rugged, L≈1), ρ* ≈ 0.91. The
     sign matches the empirical mean ρ_t observed by PRICE-RL across K
-    (Pearson r > 0.7, the paper).
+    (Pearson r > 0.7, RESEARCH_PLAN.md T3).
     """
     L_ref = max(1.0, length / 2.0)
     return float(L_ref / (L_hat + L_ref))

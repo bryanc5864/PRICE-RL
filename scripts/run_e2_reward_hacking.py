@@ -1,6 +1,6 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """
-Experiment E2 — Reward-hacking diagnostic via Price ratio.
+Experiment E2 — Reward-hacking diagnostic via Price ratio (RESEARCH_PLAN.md §7.1).
 Tests Hypothesis H2 / hard threshold T5.
 
 Setup: NK landscape (N=20, K=10) is the ground-truth oracle.

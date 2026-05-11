@@ -1,4 +1,4 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """E12 — PRICE+δ-CS hybrid on GB1 mega-budget.
 
 Tests whether the discussion-claimed complementarity of PRICE-RL (gradient

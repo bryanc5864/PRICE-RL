@@ -1,6 +1,6 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """
-Locality-aware PRICE-RL.
+Locality-aware PRICE-RL (RESEARCH_PLAN extension §15).
 
 The mega-budget multi-DMS finding (E16) showed AdaLead beats PRICE-RL-WT
 1.5–2.5× on long-sequence DMS landscapes because AdaLead's mutate-from-

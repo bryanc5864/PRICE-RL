@@ -1,4 +1,4 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """Re-plot E10 (per-position entropy) using the unified blue/green palette.
 
 Reads the cached `.npy` snapshot and re-emits the figure without re-running

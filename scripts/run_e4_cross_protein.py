@@ -1,4 +1,4 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """
 Experiment E4 — cross-protein transfer (Theorem 3 validation).
 

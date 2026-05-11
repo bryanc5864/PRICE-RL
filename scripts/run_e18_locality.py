@@ -1,4 +1,4 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """E18 — Locality-aware PRICE-RL on long-sequence DMS.
 Combines Price decomposition with AdaLead-style mutate-from-best locality
 to close the gap on TEM-1, Enhancer, GFP, AAV at 4000-query budget.

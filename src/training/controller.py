@@ -1,6 +1,6 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """
-PI controller on log(α_S/α_T) targeting ρ_t → ρ*_t.
+PI controller on log(α_S/α_T) targeting ρ_t → ρ*_t (RESEARCH_PLAN.md §5.2).
 Hyperparameters tuned once on synthetic NK and held fixed across all
 experiments (T2, low-data prescription).
 """

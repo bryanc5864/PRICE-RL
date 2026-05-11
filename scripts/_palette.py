@@ -1,4 +1,4 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """Unified blue/green palette for all paper figures.
 
 Importing this module sets a global matplotlib style: every "C0".."C9"

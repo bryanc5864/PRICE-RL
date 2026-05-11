@@ -1,0 +1,47 @@
+N= 30 K=3 seed=0 rd=0.850 ada=1.000 price=0.950 cos≥1.0000
+N= 30 K=3 seed=1 rd=0.850 ada=1.000 price=1.000 cos≥0.0000
+N= 30 K=3 seed=2 rd=0.800 ada=1.000 price=0.950 cos≥1.0000
+N= 30 K=3 seed=3 rd=0.900 ada=1.000 price=1.000 cos≥0.0000
+N= 30 K=3 seed=4 rd=0.800 ada=1.000 price=1.000 cos≥0.0000
+N= 30 K=5 seed=0 rd=0.792 ada=1.000 price=1.000 cos≥1.0000
+N= 30 K=5 seed=1 rd=0.750 ada=1.000 price=1.000 cos≥1.0000
+N= 30 K=5 seed=2 rd=0.792 ada=1.000 price=1.000 cos≥0.0000
+N= 30 K=5 seed=3 rd=0.792 ada=1.000 price=1.000 cos≥1.0000
+N= 30 K=5 seed=4 rd=0.750 ada=1.000 price=1.000 cos≥1.0000
+N= 30 K=10 seed=0 rd=0.778 ada=1.000 price=1.000 cos≥1.0000
+N= 30 K=10 seed=1 rd=0.778 ada=1.000 price=1.000 cos≥0.0000
+N= 30 K=10 seed=2 rd=0.815 ada=1.000 price=1.000 cos≥0.0000
+N= 30 K=10 seed=3 rd=0.815 ada=1.000 price=1.000 cos≥0.0000
+N= 30 K=10 seed=4 rd=0.778 ada=1.000 price=1.000 cos≥0.0000
+N= 60 K=3 seed=0 rd=0.675 ada=0.950 price=0.975 cos≥1.0000
+N= 60 K=3 seed=1 rd=0.675 ada=0.925 price=1.000 cos≥1.0000
+N= 60 K=3 seed=2 rd=0.700 ada=0.975 price=0.975 cos≥1.0000
+N= 60 K=3 seed=3 rd=0.725 ada=0.925 price=0.975 cos≥1.0000
+N= 60 K=3 seed=4 rd=0.725 ada=0.950 price=0.975 cos≥1.0000
+N= 60 K=5 seed=0 rd=0.688 ada=0.917 price=1.000 cos≥1.0000
+N= 60 K=5 seed=1 rd=0.667 ada=0.938 price=1.000 cos≥1.0000
+N= 60 K=5 seed=2 rd=0.688 ada=0.896 price=1.000 cos≥1.0000
+N= 60 K=5 seed=3 rd=0.667 ada=0.958 price=1.000 cos≥1.0000
+N= 60 K=5 seed=4 rd=0.688 ada=0.917 price=1.000 cos≥0.0000
+N= 60 K=10 seed=0 rd=0.667 ada=0.907 price=1.000 cos≥1.0000
+N= 60 K=10 seed=1 rd=0.704 ada=0.907 price=1.000 cos≥1.0000
+N= 60 K=10 seed=2 rd=0.685 ada=0.926 price=1.000 cos≥1.0000
+N= 60 K=10 seed=3 rd=0.648 ada=0.907 price=1.000 cos≥1.0000
+N= 60 K=10 seed=4 rd=0.648 ada=0.907 price=1.000 cos≥0.0000
+N=120 K=3 seed=0 rd=0.650 ada=0.838 price=0.988 cos≥1.0000
+N=120 K=3 seed=1 rd=0.600 ada=0.787 price=0.988 cos≥1.0000
+N=120 K=3 seed=2 rd=0.688 ada=0.850 price=0.950 cos≥1.0000
+N=120 K=3 seed=3 rd=0.637 ada=0.800 price=0.938 cos≥1.0000
+N=120 K=3 seed=4 rd=0.625 ada=0.838 price=0.925 cos≥1.0000
+N=120 K=5 seed=0 rd=0.615 ada=0.802 price=1.000 cos≥1.0000
+N=120 K=5 seed=1 rd=0.583 ada=0.781 price=1.000 cos≥1.0000
+N=120 K=5 seed=2 rd=0.573 ada=0.760 price=0.979 cos≥1.0000
+N=120 K=5 seed=3 rd=0.583 ada=0.792 price=1.000 cos≥1.0000
+N=120 K=5 seed=4 rd=0.604 ada=0.771 price=0.990 cos≥1.0000
+N=120 K=10 seed=0 rd=0.620 ada=0.796 price=1.000 cos≥1.0000
+N=120 K=10 seed=1 rd=0.620 ada=0.787 price=1.000 cos≥1.0000
+N=120 K=10 seed=2 rd=0.611 ada=0.787 price=1.000 cos≥1.0000
+N=120 K=10 seed=3 rd=0.611 ada=0.815 price=1.000 cos≥1.0000
+N=120 K=10 seed=4 rd=0.583 ada=0.806 price=0.991 cos≥1.0000
+
+E5-L done in 100.4s

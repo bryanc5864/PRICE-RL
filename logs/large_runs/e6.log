@@ -1,0 +1,100 @@
+== NK(N=20,K=10) ==
+  lr=0.5 inner=4 q=0.02 best=0.696±0.019 cos≥1.0000
+  lr=0.5 inner=4 q=0.05 best=0.682±0.021 cos≥1.0000
+  lr=0.5 inner=4 q=0.1 best=0.687±0.016 cos≥1.0000
+  lr=0.5 inner=4 q=0.2 best=0.687±0.013 cos≥1.0000
+  lr=0.5 inner=8 q=0.02 best=0.705±0.022 cos≥1.0000
+  lr=0.5 inner=8 q=0.05 best=0.709±0.020 cos≥1.0000
+  lr=0.5 inner=8 q=0.1 best=0.686±0.021 cos≥1.0000
+  lr=0.5 inner=8 q=0.2 best=0.685±0.024 cos≥1.0000
+  lr=0.5 inner=16 q=0.02 best=0.697±0.018 cos≥1.0000
+  lr=0.5 inner=16 q=0.05 best=0.707±0.015 cos≥1.0000
+  lr=0.5 inner=16 q=0.1 best=0.681±0.017 cos≥1.0000
+  lr=0.5 inner=16 q=0.2 best=0.674±0.012 cos≥1.0000
+  lr=1.0 inner=4 q=0.02 best=0.713±0.032 cos≥1.0000
+  lr=1.0 inner=4 q=0.05 best=0.715±0.031 cos≥1.0000
+  lr=1.0 inner=4 q=0.1 best=0.689±0.014 cos≥1.0000
+  lr=1.0 inner=4 q=0.2 best=0.683±0.018 cos≥1.0000
+  lr=1.0 inner=8 q=0.02 best=0.691±0.026 cos≥1.0000
+  lr=1.0 inner=8 q=0.05 best=0.702±0.008 cos≥1.0000
+  lr=1.0 inner=8 q=0.1 best=0.677±0.011 cos≥1.0000
+  lr=1.0 inner=8 q=0.2 best=0.704±0.039 cos≥1.0000
+  lr=1.0 inner=16 q=0.02 best=0.717±0.044 cos≥1.0000
+  lr=1.0 inner=16 q=0.05 best=0.690±0.029 cos≥1.0000
+  lr=1.0 inner=16 q=0.1 best=0.715±0.022 cos≥1.0000
+  lr=1.0 inner=16 q=0.2 best=0.696±0.022 cos≥1.0000
+  lr=2.0 inner=4 q=0.02 best=0.719±0.020 cos≥1.0000
+  lr=2.0 inner=4 q=0.05 best=0.701±0.026 cos≥1.0000
+  lr=2.0 inner=4 q=0.1 best=0.686±0.018 cos≥1.0000
+  lr=2.0 inner=4 q=0.2 best=0.675±0.013 cos≥1.0000
+  lr=2.0 inner=8 q=0.02 best=0.690±0.020 cos≥1.0000
+  lr=2.0 inner=8 q=0.05 best=0.684±0.025 cos≥1.0000
+  lr=2.0 inner=8 q=0.1 best=0.718±0.016 cos≥1.0000
+  lr=2.0 inner=8 q=0.2 best=0.712±0.024 cos≥1.0000
+  lr=2.0 inner=16 q=0.02 best=0.683±0.026 cos≥0.0000
+  lr=2.0 inner=16 q=0.05 best=0.682±0.026 cos≥0.0000
+  lr=2.0 inner=16 q=0.1 best=0.682±0.027 cos≥1.0000
+  lr=2.0 inner=16 q=0.2 best=0.687±0.024 cos≥1.0000
+  lr=4.0 inner=4 q=0.02 best=0.695±0.015 cos≥1.0000
+  lr=4.0 inner=4 q=0.05 best=0.698±0.021 cos≥1.0000
+  lr=4.0 inner=4 q=0.1 best=0.716±0.014 cos≥1.0000
+  lr=4.0 inner=4 q=0.2 best=0.708±0.024 cos≥1.0000
+  lr=4.0 inner=8 q=0.02 best=0.684±0.025 cos≥0.0000
+  lr=4.0 inner=8 q=0.05 best=0.688±0.023 cos≥0.0000
+  lr=4.0 inner=8 q=0.1 best=0.685±0.028 cos≥1.0000
+  lr=4.0 inner=8 q=0.2 best=0.688±0.027 cos≥1.0000
+  lr=4.0 inner=16 q=0.02 best=0.679±0.028 cos≥0.0000
+  lr=4.0 inner=16 q=0.05 best=0.684±0.024 cos≥0.0000
+  lr=4.0 inner=16 q=0.1 best=0.672±0.023 cos≥0.0000
+  lr=4.0 inner=16 q=0.2 best=0.690±0.032 cos≥0.0000
+== GB1 (5 rounds × 100) ==
+  lr=0.5 inner=4 q=0.02 top1%=0.006±0.002
+  lr=0.5 inner=4 q=0.05 top1%=0.006±0.002
+  lr=0.5 inner=4 q=0.1 top1%=0.005±0.003
+  lr=0.5 inner=4 q=0.2 top1%=0.005±0.002
+  lr=0.5 inner=8 q=0.02 top1%=0.018±0.006
+  lr=0.5 inner=8 q=0.05 top1%=0.017±0.005
+  lr=0.5 inner=8 q=0.1 top1%=0.015±0.003
+  lr=0.5 inner=8 q=0.2 top1%=0.013±0.004
+  lr=0.5 inner=16 q=0.02 top1%=0.090±0.021
+  lr=0.5 inner=16 q=0.05 top1%=0.085±0.021
+  lr=0.5 inner=16 q=0.1 top1%=0.080±0.018
+  lr=0.5 inner=16 q=0.2 top1%=0.061±0.013
+  lr=1.0 inner=4 q=0.02 top1%=0.017±0.005
+  lr=1.0 inner=4 q=0.05 top1%=0.016±0.005
+  lr=1.0 inner=4 q=0.1 top1%=0.015±0.003
+  lr=1.0 inner=4 q=0.2 top1%=0.013±0.004
+  lr=1.0 inner=8 q=0.02 top1%=0.091±0.022
+  lr=1.0 inner=8 q=0.05 top1%=0.085±0.021
+  lr=1.0 inner=8 q=0.1 top1%=0.080±0.017
+  lr=1.0 inner=8 q=0.2 top1%=0.061±0.012
+  lr=1.0 inner=16 q=0.02 top1%=0.165±0.038
+  lr=1.0 inner=16 q=0.05 top1%=0.160±0.043
+  lr=1.0 inner=16 q=0.1 top1%=0.156±0.040
+  lr=1.0 inner=16 q=0.2 top1%=0.144±0.042
+  lr=2.0 inner=4 q=0.02 top1%=0.091±0.022
+  lr=2.0 inner=4 q=0.05 top1%=0.085±0.020
+  lr=2.0 inner=4 q=0.1 top1%=0.078±0.016
+  lr=2.0 inner=4 q=0.2 top1%=0.063±0.014
+  lr=2.0 inner=8 q=0.02 top1%=0.165±0.040
+  lr=2.0 inner=8 q=0.05 top1%=0.161±0.042
+  lr=2.0 inner=8 q=0.1 top1%=0.159±0.038
+  lr=2.0 inner=8 q=0.2 top1%=0.144±0.041
+  lr=2.0 inner=16 q=0.02 top1%=0.176±0.088
+  lr=2.0 inner=16 q=0.05 top1%=0.202±0.037
+  lr=2.0 inner=16 q=0.1 top1%=0.173±0.087
+  lr=2.0 inner=16 q=0.2 top1%=0.168±0.085
+  lr=4.0 inner=4 q=0.02 top1%=0.173±0.027
+  lr=4.0 inner=4 q=0.05 top1%=0.169±0.028
+  lr=4.0 inner=4 q=0.1 top1%=0.162±0.030
+  lr=4.0 inner=4 q=0.2 top1%=0.160±0.025
+  lr=4.0 inner=8 q=0.02 top1%=0.176±0.088
+  lr=4.0 inner=8 q=0.05 top1%=0.175±0.088
+  lr=4.0 inner=8 q=0.1 top1%=0.172±0.087
+  lr=4.0 inner=8 q=0.2 top1%=0.162±0.083
+  lr=4.0 inner=16 q=0.02 top1%=0.156±0.103
+  lr=4.0 inner=16 q=0.05 top1%=0.156±0.103
+  lr=4.0 inner=16 q=0.1 top1%=0.156±0.103
+  lr=4.0 inner=16 q=0.2 top1%=0.156±0.103
+
+E6 done in 522.0s (96 configs)

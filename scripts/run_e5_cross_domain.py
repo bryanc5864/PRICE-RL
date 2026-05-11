@@ -1,6 +1,6 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """
-Experiment E5 — cross-domain validation.
+Experiment E5 — cross-domain validation (RESEARCH_PLAN.md §7.1, item 5).
 
 Apply PRICE-RL to a non-biology combinatorial optimisation benchmark:
 the Trap-5 deceptive landscape (Goldberg 1989). The global optimum is

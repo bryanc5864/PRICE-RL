@@ -1,4 +1,4 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """E5-L — Trap-K scaling. N∈{30,60,120}, K∈{3,5,7,10}, 5 seeds, 16 rounds."""
 from __future__ import annotations
 

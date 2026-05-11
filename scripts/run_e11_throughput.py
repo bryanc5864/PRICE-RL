@@ -1,4 +1,4 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """E11 — Wallclock / throughput benchmark.
 Profiles per-round cost across (length L, alphabet A, batch B). Substantiates
 the reproducibility claim that PRICE-RL's full campaign fits in minutes."""

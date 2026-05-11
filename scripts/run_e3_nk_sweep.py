@@ -1,6 +1,6 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """
-Experiment E3 — NK landscape sweep.
+Experiment E3 — NK landscape sweep (RESEARCH_PLAN.md §7.1).
 Tests Theorem 1 (cosine), Theorem 2 (regret-vs-L), Hypothesis H3 (theory-
 empirics match), thresholds T1, T2, T3 and soft-threshold S2.
 """

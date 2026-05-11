@@ -1,0 +1,44 @@
+factorised K= 0 seed=0 tight=0.00 mean_err=0.257 cos≥1.0000
+factorised K= 0 seed=1 tight=0.33 mean_err=0.151 cos≥1.0000
+factorised K= 0 seed=2 tight=0.00 mean_err=0.328 cos≥1.0000
+factorised K= 0 seed=3 tight=0.33 mean_err=0.258 cos≥1.0000
+factorised K= 0 seed=4 tight=0.17 mean_err=0.218 cos≥1.0000
+factorised K= 3 seed=0 tight=0.33 mean_err=0.103 cos≥1.0000
+factorised K= 3 seed=1 tight=0.33 mean_err=0.178 cos≥1.0000
+factorised K= 3 seed=2 tight=0.17 mean_err=0.216 cos≥1.0000
+factorised K= 3 seed=3 tight=0.00 mean_err=0.317 cos≥1.0000
+factorised K= 3 seed=4 tight=0.33 mean_err=0.142 cos≥1.0000
+factorised K=10 seed=0 tight=0.00 mean_err=0.205 cos≥1.0000
+factorised K=10 seed=1 tight=0.00 mean_err=0.168 cos≥1.0000
+factorised K=10 seed=2 tight=0.00 mean_err=0.373 cos≥1.0000
+factorised K=10 seed=3 tight=0.00 mean_err=0.256 cos≥1.0000
+factorised K=10 seed=4 tight=0.00 mean_err=0.331 cos≥1.0000
+factorised K=19 seed=0 tight=0.33 mean_err=0.310 cos≥1.0000
+factorised K=19 seed=1 tight=0.00 mean_err=0.565 cos≥1.0000
+factorised K=19 seed=2 tight=0.00 mean_err=0.376 cos≥1.0000
+factorised K=19 seed=3 tight=0.00 mean_err=0.500 cos≥1.0000
+factorised K=19 seed=4 tight=0.00 mean_err=0.474 cos≥1.0000
+        ar K= 0 seed=0 tight=0.33 mean_err=0.063 cos≥1.0000
+        ar K= 0 seed=1 tight=0.17 mean_err=0.134 cos≥1.0000
+        ar K= 0 seed=2 tight=0.50 mean_err=0.097 cos≥1.0000
+        ar K= 0 seed=3 tight=0.00 mean_err=0.228 cos≥1.0000
+        ar K= 0 seed=4 tight=0.00 mean_err=0.409 cos≥1.0000
+        ar K= 3 seed=0 tight=0.00 mean_err=0.377 cos≥1.0000
+        ar K= 3 seed=1 tight=0.00 mean_err=0.218 cos≥1.0000
+        ar K= 3 seed=2 tight=0.17 mean_err=0.187 cos≥1.0000
+        ar K= 3 seed=3 tight=0.17 mean_err=0.130 cos≥1.0000
+        ar K= 3 seed=4 tight=0.33 mean_err=0.194 cos≥1.0000
+        ar K=10 seed=0 tight=0.00 mean_err=0.764 cos≥1.0000
+        ar K=10 seed=1 tight=0.00 mean_err=0.182 cos≥1.0000
+        ar K=10 seed=2 tight=0.00 mean_err=0.197 cos≥1.0000
+        ar K=10 seed=3 tight=0.00 mean_err=0.381 cos≥1.0000
+        ar K=10 seed=4 tight=0.00 mean_err=0.183 cos≥1.0000
+        ar K=19 seed=0 tight=0.17 mean_err=0.142 cos≥1.0000
+        ar K=19 seed=1 tight=0.17 mean_err=0.109 cos≥1.0000
+        ar K=19 seed=2 tight=0.33 mean_err=0.099 cos≥1.0000
+        ar K=19 seed=3 tight=0.00 mean_err=0.224 cos≥1.0000
+        ar K=19 seed=4 tight=0.00 mean_err=0.502 cos≥1.0000
+
+E3-AR done in 393.3s
+    factorised  tight%=11.7  mean_err=0.286
+            ar  tight%=11.7  mean_err=0.241

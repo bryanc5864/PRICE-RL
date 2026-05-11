@@ -1,7 +1,7 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """
 NK landscape simulator (Kauffman & Weinberger 1989).
-Implements the paper (NK datasets) and §7.1 (Experiment E3).
+Implements RESEARCH_PLAN.md §6 (NK datasets) and §7.1 (Experiment E3).
 
 A sequence x ∈ {0,...,A-1}^N has fitness
     f(x) = (1/N) sum_i  table_i[ x_i ; x_{neighbours_i(1)} ; ... ; x_{neighbours_i(K)} ].

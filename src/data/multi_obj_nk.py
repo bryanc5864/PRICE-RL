@@ -1,4 +1,4 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """Multi-objective NK landscape.
 Two NK landscapes with different seeds give vector-valued fitness
 (R_1, R_2) ∈ [0, 1]^2; the Pareto front is the set of non-dominated

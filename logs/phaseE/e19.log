@@ -1,0 +1,13 @@
+seed=0 HV: rand=0.472 ada=0.527 price=0.491 |Pareto| rand=7 ada=76 price=9
+seed=1 HV: rand=0.448 ada=0.580 price=0.505 |Pareto| rand=6 ada=127 price=30
+seed=2 HV: rand=0.448 ada=0.507 price=0.494 |Pareto| rand=8 ada=5 price=21
+seed=3 HV: rand=0.470 ada=0.551 price=0.545 |Pareto| rand=7 ada=106 price=83
+seed=4 HV: rand=0.477 ada=0.556 price=0.525 |Pareto| rand=3 ada=63 price=7
+
+E19 done in 7.8s
+  hv_random      mean=0.463±0.013
+  hv_adalead     mean=0.544±0.025
+  hv_price_rl    mean=0.512±0.020
+  n_pareto_random    mean=6.2±1.7
+  n_pareto_adalead   mean=75.4±41.7
+  n_pareto_price_rl  mean=30.0±27.8

@@ -1,4 +1,4 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """E6 — Hyperparameter robustness study.
 Grid over base_lr × inner_steps × support_quantile on NK + GB1.
 """

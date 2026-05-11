@@ -1,6 +1,6 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """
-Categorical softmax policy over discrete sequences.
+Categorical softmax policy over discrete sequences (RESEARCH_PLAN.md §4).
 Per-position logits are independent (factorised policy). This is intentional
 — it keeps the support-membership operation clean and the Price decomposition
 exact under entropy regularisation (proof of Theorem 1).
@@ -15,7 +15,7 @@ import torch.nn.functional as F
 class FactorisedCategoricalPolicy(nn.Module):
     """π_θ(x) = ∏_i softmax(logits[i])_{x_i}.
 
-    Optional wildtype-aware initialization:
+    Optional wildtype-aware initialization (RESEARCH_PLAN extension):
     pass `wildtype` (length-L int array) and the per-position logit at
     the WT base is set to `wt_strength`; all other positions to 0. This
     biases sampling toward the WT neighbourhood — the standard prior

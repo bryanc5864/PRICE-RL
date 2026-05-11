@@ -1,5 +1,5 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
-"""Deterministic seeding helpers."""
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+"""Deterministic seeding helpers (RESEARCH_PLAN.md §7.2)."""
 import os
 import random
 import numpy as np

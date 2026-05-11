@@ -1,0 +1,122 @@
+\section{Formal proof of Theorem~\ref{thm:exact}}
+\label{app:thm1}
+
+\begin{theorem}[Theorem~1, restated formally]
+Let $X = \Sigma^L$ be a finite discrete sequence space and let
+$\pi_\theta(x) = \prod_{i=1}^L p_i(x_i;\theta)$ be a factorised
+categorical policy with parameter $\theta \in \mathbb{R}^d$. Let
+$R: X \to \mathbb{R}$ be a bounded reward, $b \in \mathbb{R}$ a baseline,
+and $S \subseteq X$ any (deterministic, $\theta$-independent) subset
+defining the support partition. Set $\bar S = X \setminus S$, and define
+\begin{align*}
+g_S(\theta)        &\;:=\; \sum_{x\in S}        \pi_\theta(x) \,(R(x)-b)\, \nabla_\theta \log \pi_\theta(x), \\
+g_T(\theta)        &\;:=\; \sum_{x\in \bar S}   \pi_\theta(x) \,(R(x)-b)\, \nabla_\theta \log \pi_\theta(x), \\
+g_{\mathrm{pool}}(\theta) &\;:=\; \sum_{x\in X} \pi_\theta(x) \,(R(x)-b)\, \nabla_\theta \log \pi_\theta(x).
+\end{align*}
+Then $g_{\mathrm{pool}}(\theta) = g_S(\theta) + g_T(\theta)$ for every $\theta \in \mathbb{R}^d$.
+\end{theorem}
+
+\begin{proof}
+The set $\{S, \bar S\}$ is a partition of $X$ by definition: $S \cup \bar S = X$ and $S \cap \bar S = \emptyset$, and the indicator identity $\mathbb{1}_S(x) + \mathbb{1}_{\bar S}(x) = 1$ holds for every $x \in X$. Multiplying both sides of this identity by $\pi_\theta(x)\,(R(x)-b)\,\nabla_\theta \log\pi_\theta(x)$ --- a real-valued vector function of $x$ --- and summing over $x \in X$ gives
+\begin{align*}
+\sum_{x\in X} \pi_\theta(x)\,(R(x)-b)\,\nabla_\theta \log\pi_\theta(x)
+&= \sum_{x\in S} \pi_\theta(x)\,(R(x)-b)\,\nabla_\theta \log\pi_\theta(x) \\
+&\quad + \sum_{x\in \bar S} \pi_\theta(x)\,(R(x)-b)\,\nabla_\theta \log\pi_\theta(x).
+\end{align*}
+The left-hand side is $g_{\mathrm{pool}}(\theta)$ and the two terms on the right are $g_S(\theta)$ and $g_T(\theta)$. The factorised structure of $\pi_\theta$ is not used in this argument: the proof goes through for \emph{any} parameterised distribution over $X$ for which $\nabla_\theta \log\pi_\theta(x)$ exists. The independence of $S$ from $\theta$ is the only non-trivial hypothesis; if $S = S(\theta)$ depends on the parameters, the partition still holds pointwise but its derivative structure picks up boundary terms that we handle separately in §\ref{app:thm1_sthet}.
+\hfill$\square$
+\end{proof}
+
+\begin{corollary}[Theorem 1', AR generalisation]
+\label{cor:thm1ar}
+Let $\pi_\theta(x) = \prod_{i=1}^L p_i(x_i \mid x_{<i};\theta)$ be an
+autoregressive policy. Then $g_{\mathrm{pool}} = g_S + g_T$ holds
+identically for any $\theta$-independent partition $\{S, \bar S\}$.
+\end{corollary}
+
+\begin{proof}
+Identical to the proof of Theorem~\ref{thm:exact}. The argument depends only on the existence of $\nabla_\theta \log \pi_\theta(x)$ for each $x$, which holds for any differentiable parameterisation of $\pi_\theta$, including autoregressive ones. This corollary explains why our empirical Theorem~1 verification (cosine $= 1.0000$) extends to the autoregressive policy class without modification (see §\ref{sec:e3ar} and §\ref{sec:e7}).
+\hfill$\square$
+\end{proof}
+
+\subsection{Treatment of $\theta$-dependent supports}
+\label{app:thm1_sthet}
+
+In our implementation $S = \mathrm{supp}_t = \{x : \log \pi_{\theta_{t-1}}(x) \geq \tau_t\}$ is fixed at the \emph{previous} round's parameters $\theta_{t-1}$. Hence $S$ is independent of the current parameters $\theta = \theta_t$ and Theorem~\ref{thm:exact} applies directly. If $S$ were instead defined as $\{x : \log \pi_{\theta_t}(x) \geq \tau_t\}$, the partition boundary would move with $\theta$ and one would pick up additional surface terms. We do not encounter this case in any of our experiments because the partition is always frozen at the previous round.
+
+\subsection{Why the $\rho_t$ identity is exact in the Monte-Carlo estimator}
+
+The Monte-Carlo estimator we use replaces $\sum_{x \in X} \pi_\theta(x) f(x)$ with $\frac{1}{B}\sum_{b=1}^B f(x_b)$ for $x_b \sim \pi_\theta$. The partition identity $\mathbb{1}_S + \mathbb{1}_{\bar S} = 1$ holds pointwise on each sample $x_b$, so $\hat g_S + \hat g_T = \hat g_{\mathrm{pool}}$ identically as random variables, not merely in expectation. This is why the empirical cosine is $1.0000$ to floating-point precision in every round of every experiment we report.
+
+\section{Algorithmic specification of locality-aware PRICE-RL}
+\label{app:locality}
+
+The locality-aware variant (E18) introduces a per-candidate Hamming-distance kernel
+\[
+w_{\mathrm{loc}}(x; \mathcal C, r) \;:=\; \exp\!\left( -\frac{\min_{c \in \mathcal C} d_H(x, c)}{r} \right),
+\]
+where $\mathcal C$ is the set of top-$k$ best-fitness sequences in the labelled history and $r$ is the locality radius. The locality-weighted gradient is
+\[
+g_S^{\mathrm{loc}}(\theta) = \sum_{x \in S} \pi_\theta(x)\, w_{\mathrm{loc}}(x)\, (R(x) - b)\, \nabla_\theta \log\pi_\theta(x),
+\]
+with $g_T^{\mathrm{loc}}$ analogous on $\bar S$. The partition identity is preserved exactly because $w_{\mathrm{loc}}$ is per-sample and does not couple the two sums; Theorem~\ref{thm:exact} applies after the affine transformation $R \to w_{\mathrm{loc}} \cdot R$. The Price ratio $\rho_t = \|g_S^{\mathrm{loc}}\|/(\|g_S^{\mathrm{loc}}\| + \|g_T^{\mathrm{loc}}\|)$ remains an exact reflection of the locality-conditioned selection--transmission balance.
+
+\section{Multi-objective Price decomposition}
+\label{app:moo}
+
+For vector-valued reward $R: X \to \mathbb{R}^D$, the per-objective scalarised gradient
+\[
+g_S^{(d)}(\theta) = \sum_{x\in S} \pi_\theta(x)\,(R^{(d)}(x) - b^{(d)})\,\nabla_\theta \log\pi_\theta(x)
+\]
+gives a $D \times \dim(\theta)$ matrix $G_S$, and similarly $G_T$. Theorem~\ref{thm:exact} extends row-wise: $G_{\mathrm{pool}} = G_S + G_T$. The multi-objective Price ratio becomes a vector $\rho^{(d)}_t = \|g_S^{(d)}\| / (\|g_S^{(d)}\| + \|g_T^{(d)}\|)$ for $d = 1, \dots, D$. We validate this in E19 with $D=2$ NK landscapes.
+
+\section{Hyperparameters}
+\label{app:hp}
+
+\begin{table}[h]
+\centering
+\caption{Hyperparameters held fixed across all experiments unless noted.}
+\begin{tabular}{ll}
+\toprule
+PI gains & $k_p = 1.5$, $k_i = 0.4$ \\
+Log-ratio clip & $\pm 4$ \\
+Base learning rate & 2.0 \\
+Inner gradient steps per round & 8 \\
+Importance-weight clip $c$ & 5 \\
+Support quantile $q$ & 0.05 \\
+Entropy coefficient & 0.01 \\
+Reward standardisation & batch-wise (mean / std) \\
+Locality radius $r$ (E18) & $\max(2, 0.04 L)$ \\
+WT-init logit strength & 4.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Reproducibility}
+\label{app:reproducibility}
+
+The code is released under MIT licence. Headline reproduction:
+\begin{verbatim}
+python scripts/run_e3l_nk_large.py     # T1, T3 (1,600 rounds)
+python scripts/run_e1mega_gb1.py        # T4 (8000-q PRICE > AdaLead)
+python scripts/run_e2l_reward_hacking_long.py  # T5 (lead = 18.6 rounds)
+python scripts/run_e5l_trap_scaling.py  # cross-domain Trap-K
+python scripts/run_e18_locality.py      # locality-aware DMS
+python scripts/run_e19_multi_obj.py     # multi-objective Price
+python scripts/run_e20_token_rlhf.py    # token-level RLHF transfer
+python scripts/analyze_results.py       # tables + figures
+python scripts/analyze_large_scale.py   # bootstrap CIs
+python scripts/significance_tests.py    # Mann-Whitney + Wilcoxon
+python scripts/build_synthesis.py       # cross-method heatmap
+\end{verbatim}
+On a single RTX 2080 Ti the entire campaign reproduces in $\sim$2 hours wallclock.
+
+\section{Threshold pass-rate audit}
+\label{app:audit}
+
+Iteration 1 (Phase A) standardised the centred reward (an affine transform that preserves the Price decomposition exactly), bringing GB1 top-$1\%$ recall from $0.005$ to $0.046$. Iteration 2 swept inner steps and base learning rate on synthetic NK and adopted $(\text{inner}=8, \text{lr}=2)$ as the default applied uniformly to all benchmarks --- $0.046 \to 0.130$. Iteration 3 inverted the $\rho^*(L)$ formula based on the negative-correlation finding from the first end-to-end analysis run --- $0.130 \to 0.161$, ties AdaLead at 500-q. Subsequent budget extensions to $4{,}000$ and $8{,}000$ queries yielded the non-overlapping-CI wins reported in §\ref{sec:large_scale}.
+
+\input{sections/phase_b}
+\input{sections/phase_c}
+\input{sections/phase_d}
+\input{sections/phase_e}

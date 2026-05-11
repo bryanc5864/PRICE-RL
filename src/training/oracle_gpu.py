@@ -1,4 +1,4 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """GPU-accelerated TableOracle. The numpy nearest-neighbour fallback for
 long-sequence DMS (e.g. AAV at L=589, N=42k) is the active-learning
 bottleneck. Moving the broadcast to torch on GPU gives ~50× speedup."""

@@ -1,4 +1,4 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """E1-mega — 40 rounds × 200 queries × 10 seeds on GB1.
 
 Tests whether PRICE-RL's GB1 lead over AdaLead (already non-overlapping

@@ -1,4 +1,4 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """Aggregate the large-scale CSVs (E3-L, E1-L, E2-L, E5-L, E6) into
 publication tables + figures with bootstrap confidence intervals."""
 from __future__ import annotations

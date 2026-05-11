@@ -1,4 +1,4 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """E1-L — Long-horizon GB1 active learning. 20 rounds × 200 queries × 10 seeds.
 Per-round best-fitness trajectories + bootstrap CIs."""
 from __future__ import annotations

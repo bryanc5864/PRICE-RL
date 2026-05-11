@@ -1,0 +1,22 @@
+
+[TEM1_Stiffler2015] N=4996 L=287 A=20
+  random             top1%=0.8082±0.0600
+  adalead            top1%=65.7633±4.6081
+  price_rl_wt        top1%=49.7347±24.9289
+
+[Enhancer_BCL11A] N=1799 L=600 A=4
+  random             top1%=12.6471±0.9608
+  adalead            top1%=202.8353±0.3357
+  price_rl_wt        top1%=157.7647±56.4929
+
+[GFP_Sarkisyan2016] N=51714 L=238 A=20
+  random             top1%=0.0054±0.0019
+  adalead            top1%=0.9605±1.9211
+  price_rl_wt        top1%=0.3807±0.4611
+
+[AAV_Sinai2021] N=42328 L=589 A=20
+  random             top1%=0.0132±0.0012
+  adalead            top1%=2.5234±2.1066
+  price_rl_wt        top1%=0.9905±1.1883
+
+E16 done in 185.8s

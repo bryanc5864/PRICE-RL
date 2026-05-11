@@ -1,5 +1,5 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
-"""Diversity-aware metrics.
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+"""Diversity-aware metrics (RESEARCH_PLAN extension §14).
 
 Biology rarely cares about a single best variant — it cares about a
 DIVERSE set of high-fitness candidates that can be screened in parallel.

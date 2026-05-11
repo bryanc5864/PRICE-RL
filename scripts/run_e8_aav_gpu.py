@@ -1,4 +1,4 @@
-# PRICE-RL — MIT Licence — Anonymous NeurIPS 2026 submission
+# PRICE-RL — MIT License — (c) 2026 Bryan Cheng
 """E8 — Finish AAV multi-DMS (deferred from Phase B) using GPU oracle."""
 from __future__ import annotations
 
