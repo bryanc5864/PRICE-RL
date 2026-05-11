@@ -1,0 +1,69 @@
+% PRICE-RL — MIT License — (c) 2026 Bryan Cheng
+\documentclass{article}
+
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+% Use [accepted] for camera-ready with author info visible;
+% plain \usepackage{icml2026} for anonymous review.
+\usepackage[accepted]{icml2026}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{xcolor}
+% cleveref must load after amsmath
+\usepackage[capitalize,noabbrev]{cleveref}
+
+\hypersetup{colorlinks=true, linkcolor=blue!60!black, citecolor=blue!60!black, urlcolor=blue!60!black}
+\graphicspath{{../figures/}{figures/}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\icmltitlerunning{PRICE-RL: Selection--Transmission Decomposed RL for Biological Design}
+
+\begin{document}
+
+\twocolumn[
+  \icmltitle{PRICE-RL: Selection--Transmission Decomposed Reinforcement\\
+    Learning for Sequential Biological Design}
+
+  \begin{icmlauthorlist}
+    \icmlauthor{Bryan Cheng}{ind}
+  \end{icmlauthorlist}
+
+  \icmlaffiliation{ind}{Independent Researcher}
+  \icmlcorrespondingauthor{Bryan Cheng}{cbcb4627@gmail.com}
+
+  \icmlkeywords{reinforcement learning, biological sequence design, Price equation, reward hacking, active learning}
+
+  \vskip 0.3in
+]
+
+\printAffiliationsAndNotice{}
+
+\begin{abstract}
+We introduce \textbf{PRICE-RL}, a reinforcement-learning algorithm for biological sequence design whose update is decomposed --- exactly, sample-wise, on every batch --- into the two components the Price equation imposes on evolutionary change: a \emph{selection} term that re-weights variants the policy already supports, and a \emph{transmission} term that shifts the policy's support into new regions of sequence space. A PI controller drives the empirical Price ratio $\rho_t = \|g_S\|/(\|g_S\|+\|g_T\|)$ towards a target derived from the reward landscape's autocorrelation length, and the same ratio doubles as a per-round reward-hacking diagnostic. The cosine identity $\hat g_S + \hat g_T = \hat g_{\mathrm{pool}}$ holds to floating-point precision across $1{,}600$ NK round-seeds without exception. On the $149{,}361$-variant GB1 four-mutation landscape, PRICE-RL ties AdaLead at $500$ queries and beats it by $12.4\%$ with non-overlapping $95\%$ CIs at $8{,}000$ queries (Mann--Whitney $p<10^{-3}$), and discovers $2.5\times$ more unique top-$1\%$ variants at matched fitness. On a deliberately weak proxy reward, $\rho_t$ fires a mean of $18.6$ rounds before proxy variance crosses its alarm on $100\%$ of $16$ seeds, robust to surrogate noise up to $\sigma_n = 0.40$. On the deceptive Trap-K landscape PRICE-RL hits the global optimum on every seed at every scale up to $N=120$, where AdaLead misses up to $20\%$ of the time. The framework extends to multi-objective reward and to token-level autoregressive RLHF-style policies with the cosine identity preserved at $1.0000$ in each case.
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/methods}
+\input{sections/experiments}
+\input{sections/results}
+\input{sections/large_scale}
+\input{sections/discussion}
+
+\bibliographystyle{icml2026}
+\bibliography{references}
+
+\appendix
+\onecolumn
+\input{sections/appendix}
+
+\end{document}

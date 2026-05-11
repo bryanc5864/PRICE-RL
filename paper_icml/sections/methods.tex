@@ -1,0 +1,32 @@
+\section{Method}
+\label{sec:methods}
+
+We formalise sequence design as an active-learning Markov decision process. At round $t$, given a labelled history $H_t = \{(s_i, R(s_i))\}$, the agent samples a batch of $B$ candidate sequences $a_t$ from a policy $\pi_{\theta_t}$, queries an oracle (a wet-lab assay or, in our setting, a cached deep-mutational-scan table) to receive fitness values $r_t = R(a_t)$, and updates to $\theta_{t+1}$. The campaign budget is $T$ rounds at $B$ queries per round; we focus on the low-data regime $B\cdot T\in[200, 8{,}000]$ that all 2025-cycle baselines target, the regime in which proxy reward unreliability bites hardest because the labelled support is small relative to sequence space.
+
+\paragraph{The decomposed policy gradient.} Let $\pi_{\theta}$ be a factorised categorical policy $\pi_\theta(x)=\prod_i \mathrm{softmax}(\ell_i)_{x_i}$ and let $\pi_{\theta_{t-1}}$ be the previous policy. Define $\mathrm{supp}_t = \{ x : \log \pi_{\theta_{t-1}}(x) \geq \tau_t \}$, where $\tau_t$ is the $q$-th quantile (default $q=0.05$) of $\log \pi_{\theta_{t-1}}$ on a fixed reference batch, specialising the embedding-density support of \citet{kim2025deltacs} to factorised categorical policies. With learned baseline $b\in\mathbb{R}$, the standard REINFORCE estimator $g_{\mathrm{pooled}}(\theta) = \mathbb{E}_{x\sim\pi_\theta}[(R(x)-b)\,\nabla_\theta \log\pi_\theta(x)]$ is partitioned by support membership into
+\begin{align}
+g_S(\theta) &= \mathbb{E}_{x\sim\pi_\theta} \!\left[ \mathbb{1}[x\!\in\!\mathrm{supp}_t] \cdot (R(x)\!-\!b)\,\nabla_\theta \log\pi_\theta(x) \right], \\
+g_T(\theta) &= \mathbb{E}_{x\sim\pi_\theta} \!\left[ \mathbb{1}[x\!\notin\!\mathrm{supp}_t] \cdot (R(x)\!-\!b)\,\nabla_\theta \log\pi_\theta(x) \right].
+\end{align}
+For out-of-support samples we apply a clipped self-normalised importance weight $\min(\pi_\theta(x)/\pi_{\theta_{t-1}}(x),\, c)$ with $c=5$, which dampens long-tail variance without breaking the cosine identity (verified in §\ref{sec:results}).
+
+\begin{theorem}[Exactness]
+\label{thm:exact}
+For a factorised categorical policy on a discrete sequence space, $g_{\mathrm{pooled}} = g_S + g_T$ identically. The argument depends only on $\nabla_\theta \log\pi_\theta$ existing, so the result extends to autoregressive parameterisations (Corollary~\ref{cor:thm1ar}).
+\end{theorem}
+\begin{proof}[Sketch.] The partition $\{\mathrm{supp}_t, \overline{\mathrm{supp}}_t\}$ is a disjoint cover; linearity of expectation in the indicator gives the identity directly. See Appendix~\ref{app:thm1} for the full algebraic argument and the \citet{frank2025price} force--metric--bias correspondence.\end{proof}
+
+The identity is sample-wise, not in expectation: $\hat g_S + \hat g_T = \hat g_{\mathrm{pool}}$ on every Monte-Carlo batch. We use this as a continuous self-check throughout training and as the empirical foundation of the rest of the paper.
+
+\paragraph{The Price ratio, its target, and the controller.} We let $\rho_t = \|g_S\| / (\|g_S\| + \|g_T\|) \in [0,1]$ summarise the gradient's selection--transmission balance and estimate the reward landscape's autocorrelation length $\hat L_t$ from $H_t$ by fitting $\log[\mathrm{Cov}(R(s),R(s'))/\mathrm{Var}(R)] = -d/L$ via OLS over distance bins (Stadler--Happel for NK \citep{stadler1999random}). The target schedule
+\(
+\rho^*(\hat L) = L_{\mathrm{ref}}/(\hat L + L_{\mathrm{ref}})
+\)
+with $L_{\mathrm{ref}} = N/2$ recovers the regret-optimal mixing in the low-data regime: rugged landscapes (small $\hat L$) demand selection-heavy schedules because each peak found is precious; smooth landscapes can afford transmission-heavy schedules because exploration is locally informative. This direction is the \emph{opposite} of what a high-data regret analysis predicts; we discuss the inversion in §\ref{sec:discussion}. A PI controller drives $\log(\alpha_S/\alpha_T) = k_p (\rho_t - \rho^*) + k_i \int (\rho_t - \rho^*)\,\mathrm{d}t$ clipped at $\pm 4$, with $\sqrt{\alpha_S \alpha_T} = \mathrm{base\_lr}$ held fixed so the redistributed step matches the pooled REINFORCE step in magnitude. Gains $k_p=1.5$, $k_i=0.4$ were tuned once on synthetic NK and held fixed across every benchmark in the paper.
+
+\begin{theorem}[Regret of adaptive mixing, informal]
+\label{thm:regret}
+Let $L$ be the reward landscape's autocorrelation length and $T$ the campaign budget. Any fixed mixing $\alpha_S/\alpha_T = \mathrm{const}$ suffers regret $\Omega(\sqrt{T}\,D(L,T))$ for an inhomogeneity functional $D$. PRICE-RL's adaptive mixing achieves regret $O(\mathrm{polylog}(T)\,\sqrt{H(\rho^*)})$, matching the lower bound up to logarithmic factors.
+\end{theorem}
+
+The PRICE-RL inner loop (full pseudocode in Appendix~\ref{app:reproducibility}) is the only structural addition over a vanilla REINFORCE / PPO-style update: at round $t$, sample $a_t \sim \pi_{\theta_{t-1}}$, query the oracle, partition by membership in $\mathrm{supp}_t$, compute $g_S$ and $g_T$, derive $\rho_t$ and $\hat L_t$, step the controller, and update $\theta_t \gets \theta_{t-1} - \alpha_S\, g_S - \alpha_T\, g_T$. Per-round wallclock matches a baseline policy-gradient implementation to within a few percent (Appendix~\ref{app:phaseC}).
